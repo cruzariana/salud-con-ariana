@@ -20,7 +20,7 @@ export const ContactForm = () => {
     e.preventDefault();
     
     // Construir mensaje para WhatsApp
-    const whatsappMessage = `¡Hola! Me interesa tu programa de bienestar Shaklee.%0A%0A*Nombre:* ${formData.nombre}%0A*Email:* ${formData.email}%0A*Teléfono:* ${formData.telefono}%0A*Mensaje:* ${formData.mensaje}`;
+    const whatsappMessage = `¡Hola! Me interesa tu programa de bienestar.%0A%0A*Nombre:* ${formData.nombre}%0A*Email:* ${formData.email}%0A*Teléfono:* ${formData.telefono}%0A*Mensaje:* ${formData.mensaje}`;
     
     // Abrir WhatsApp (reemplaza con tu número real)
     window.open(`https://wa.me/17872101758?text=${whatsappMessage}`, '_blank');
@@ -137,11 +137,11 @@ export const ContactForm = () => {
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">✓</span>
-                    <span>Más de 65 años de experiencia Shaklee</span>
+                    <span>Productos premium de alta calidad</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">✓</span>
-                    <span>Productos respaldados por ciencia</span>
+                    <span>Respaldados por ciencia y nutrición</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">✓</span>

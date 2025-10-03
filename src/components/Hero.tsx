@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-wellness.jpg";
+import logo from "@/assets/logo.png";
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -21,13 +22,14 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-transparent" />
       </div>
 
+      {/* Logo */}
+      <div className="absolute top-8 left-8 z-20 animate-fade-in">
+        <img src={logo} alt="Ariana Cruz Bienestar y Salud" className="h-20 md:h-24 w-auto" />
+      </div>
+
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-white" />
-            <span className="text-white text-sm font-medium">Embajadora Oficial Shaklee</span>
-          </div>
           
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up">
             Transforma Tu Vida con
