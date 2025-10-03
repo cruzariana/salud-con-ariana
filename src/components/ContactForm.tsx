@@ -87,7 +87,7 @@ export const ContactForm = () => {
                     type="tel"
                     value={formData.telefono}
                     onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                    placeholder="+1 787 210 1758"
+                    placeholder="Tu número de WhatsApp"
                     className="h-12"
                   />
                 </div>
