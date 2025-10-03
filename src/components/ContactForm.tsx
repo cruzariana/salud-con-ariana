@@ -23,7 +23,7 @@ export const ContactForm = () => {
     const whatsappMessage = `¡Hola! Me interesa tu programa de bienestar Shaklee.%0A%0A*Nombre:* ${formData.nombre}%0A*Email:* ${formData.email}%0A*Teléfono:* ${formData.telefono}%0A*Mensaje:* ${formData.mensaje}`;
     
     // Abrir WhatsApp (reemplaza con tu número real)
-    window.open(`https://wa.me/1234567890?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/17872101758?text=${whatsappMessage}`, '_blank');
     
     toast({
       title: "¡Mensaje enviado!",
@@ -87,7 +87,7 @@ export const ContactForm = () => {
                     type="tel"
                     value={formData.telefono}
                     onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                    placeholder="+1 234 567 8900"
+                    placeholder="+1 787 210 1758"
                     className="h-12"
                   />
                 </div>
@@ -123,7 +123,7 @@ export const ContactForm = () => {
                   ¿Prefieres contactarme directamente? Envíame un mensaje por WhatsApp y te responderé de inmediato.
                 </p>
                 <Button 
-                  onClick={() => window.open('https://wa.me/1234567890', '_blank')}
+                  onClick={() => window.open('https://wa.me/17872101758', '_blank')}
                   variant="outline"
                   className="w-full h-12 text-lg border-2 hover:bg-secondary/20"
                 >
