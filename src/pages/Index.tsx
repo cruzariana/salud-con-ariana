@@ -4,6 +4,7 @@ import { Plans } from "@/components/Plans";
 import { AboutMe } from "@/components/AboutMe";
 import { Testimonials } from "@/components/Testimonials";
 import { ContactForm } from "@/components/ContactForm";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
       <Testimonials />
       <Plans />
       <ContactForm />
+      <WhatsAppFloat />
       
       <footer className="bg-foreground text-background py-12">
         <div className="container mx-auto px-4">
