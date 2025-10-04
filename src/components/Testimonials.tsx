@@ -1,29 +1,32 @@
 import { Card } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import biancaTransformation from "@/assets/bianca-transformation.jpeg";
+import meralysTransformation from "@/assets/meralys-transformation.jpeg";
+import yaritzaTransformation from "@/assets/yaritza-transformation.jpeg";
 
 const testimonials = [
   {
-    name: "María González",
-    age: "35 años",
-    result: "Perdió 15 kg en 4 meses",
-    image: "👩",
-    text: "Ariana cambió mi vida completamente. No solo perdí peso, sino que gané energía y confianza. Su apoyo constante fue clave en mi transformación.",
+    name: "Bianca",
+    subtitle: "Mamita de 2",
+    result: "33 lbs menos en 6 meses",
+    image: biancaTransformation,
+    text: "7 meses post-parto (Cesárea + esterilización). 6 meses de progreso. 33 lbs menos, más energía y más confianza ✨🫶🏻",
     rating: 5
   },
   {
-    name: "Carmen Rodríguez",
-    age: "42 años",
-    result: "Recuperó su energía",
-    image: "👩‍🦰",
-    text: "Después de años sintiéndome cansada, los planes de Ariana me devolvieron la vitalidad. Ahora tengo energía para todo el día y me siento increíble.",
+    name: "Meralys",
+    subtitle: "4 años de transformación",
+    result: "60 lbs menos",
+    image: meralysTransformation,
+    text: "60lbs menos, 4 años de trabajar en mi e ir tras eso que tanto queremos 🩷",
     rating: 5
   },
   {
-    name: "Isabel Torres",
-    age: "28 años",
-    result: "Tonificó su cuerpo",
-    image: "👱‍♀️",
-    text: "Los resultados son evidentes. Logré el cuerpo que siempre quise con un plan realista y sostenible. ¡Gracias Ariana!",
+    name: "Yaritza",
+    subtitle: "Febrero vs Septiembre",
+    result: "42 lbs menos",
+    image: yaritzaTransformation,
+    text: "Febrero vs septiembre 🙏🏼 Y me siento otra persona ❤️ 42 libras menos 🙌🏼🙌🏼🙌🏼",
     rating: 5
   }
 ];
@@ -46,13 +49,19 @@ export const Testimonials = () => {
             {testimonials.map((testimonial, index) => (
               <Card 
                 key={index}
-                className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2"
+                className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 overflow-hidden"
               >
-                <div className="text-center mb-6">
-                  <div className="text-6xl mb-4">{testimonial.image}</div>
-                  <h3 className="font-bold text-xl mb-1">{testimonial.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{testimonial.age}</p>
-                  <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold">
+                <div className="mb-6">
+                  <div className="mb-4 rounded-lg overflow-hidden">
+                    <img 
+                      src={testimonial.image} 
+                      alt={`Transformación de ${testimonial.name}`}
+                      className="w-full h-64 object-cover"
+                    />
+                  </div>
+                  <h3 className="font-bold text-xl mb-1 text-center">{testimonial.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-2 text-center">{testimonial.subtitle}</p>
+                  <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold w-full text-center">
                     {testimonial.result}
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Heart, Target, Award } from "lucide-react";
+import arianaTransformation from "@/assets/ariana-transformation.png";
 
 export const AboutMe = () => {
   return (
@@ -8,24 +9,35 @@ export const AboutMe = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Conoce a Ariana Cruz
+              Conoce a Ariana Cruz Colón
             </h2>
             <p className="text-xl text-muted-foreground">
-              Tu guía hacia una vida más saludable y plena
+              Embajadora de Bienestar y Salud
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Hola, soy <span className="font-bold text-primary">Ariana Cruz</span>, y mi pasión es ayudar a mujeres como tú a alcanzar sus metas de salud y bienestar.
+                Soy <span className="font-bold text-primary">Ariana Cruz Colón</span>, Embajadora de Bienestar y Salud, apasionada por ayudar a otros a transformar su vida desde adentro hacia afuera. Mi camino comenzó con una meta personal: recuperar mi energía, mi autoestima y mi confianza.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Después de mi propia transformación, descubrí el poder de combinar nutrición adecuada, ejercicio constante y suplementos de calidad. Hoy dedico mi vida a compartir este conocimiento.
+                A través de disciplina, apoyo, cambios de hábitos y la integración de productos naturales y efectivos, logré una transformación real: <span className="font-bold text-primary">perdí 30 lb</span> y gané una nueva versión de mí misma, más saludable, fuerte y plena.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Mi enfoque es personalizado y holístico: no solo te ayudo a perder peso o tonificar tu cuerpo, sino a crear hábitos sostenibles que transformarán tu vida para siempre.
+                Hoy, esa experiencia se ha convertido en mi misión. Acompaño a otras personas en su proceso, guiándolas con empatía y herramientas prácticas para que también logren resultados duraderos.
               </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Creo firmemente que el bienestar no es solo físico, sino también mental y emocional, y que pequeños pasos consistentes pueden producir cambios extraordinarios.
+              </p>
+            </div>
+
+            <div className="relative">
+              <img 
+                src={arianaTransformation} 
+                alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
+                className="rounded-lg shadow-2xl w-full h-auto"
+              />
             </div>
 
             <div className="space-y-6">
