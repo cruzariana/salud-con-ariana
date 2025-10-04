@@ -1,13 +1,18 @@
 import { Hero } from "@/components/Hero";
 import { Benefits } from "@/components/Benefits";
 import { Plans } from "@/components/Plans";
+import { AboutMe } from "@/components/AboutMe";
+import { Testimonials } from "@/components/Testimonials";
 import { ContactForm } from "@/components/ContactForm";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
       <Benefits />
+      <AboutMe />
+      <Testimonials />
       <Plans />
       <ContactForm />
       
@@ -18,11 +23,11 @@ const Index = () => {
               © 2024 Ariana Cruz. Todos los derechos reservados.
             </p>
             <div className="flex justify-center gap-6 text-xs opacity-60">
-              <a href="#" className="hover:opacity-100 transition-opacity">Política de Privacidad</a>
+              <Link to="/privacidad" className="hover:opacity-100 transition-opacity">Política de Privacidad</Link>
               <span>|</span>
-              <a href="#" className="hover:opacity-100 transition-opacity">Términos y Condiciones</a>
+              <Link to="/terminos" className="hover:opacity-100 transition-opacity">Términos y Condiciones</Link>
               <span>|</span>
-              <a href="#" className="hover:opacity-100 transition-opacity">Descargo de Responsabilidad</a>
+              <Link to="/descargo" className="hover:opacity-100 transition-opacity">Descargo de Responsabilidad</Link>
             </div>
           </div>
         </div>
