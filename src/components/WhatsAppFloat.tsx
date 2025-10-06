@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 export const WhatsAppFloat = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const phoneNumber = "17874870863";
+  const phoneNumber = "17872101758";
 
   const handleWhatsAppClick = (message: string) => {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
