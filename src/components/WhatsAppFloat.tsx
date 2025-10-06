@@ -6,8 +6,18 @@ export const WhatsAppFloat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const phoneNumber = "17872101758";
 
-  const handleWhatsAppClick = (message: string) => {
+  const handleWhatsAppClick = (message: string, action: string) => {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // 🔹 Registro del evento en Google Analytics
+    if (typeof window !== "undefined" && typeof (window as any).gtag !== "undefined") {
+      (window as any).gtag("event", "click_whatsapp", {
+        event_category: "engagement",
+        event_label: action,
+        value: 1,
+      });
+    }
+
     window.open(whatsappUrl, "_blank");
     setIsOpen(false);
   };
@@ -29,21 +39,36 @@ export const WhatsAppFloat = () => {
             </div>
             <div className="space-y-2">
               <Button
-                onClick={() => handleWhatsAppClick("¡Hola! Me gustaría información sobre los planes de bienestar.")}
+                onClick={() =>
+                  handleWhatsAppClick(
+                    "¡Hola! Me gustaría información sobre los planes de bienestar.",
+                    "Ver planes disponibles"
+                  )
+                }
                 variant="outline"
                 className="w-full justify-start text-sm"
               >
                 Ver planes disponibles
               </Button>
               <Button
-                onClick={() => handleWhatsAppClick("Hola, tengo una pregunta sobre el programa.")}
+                onClick={() =>
+                  handleWhatsAppClick(
+                    "Hola, tengo una pregunta sobre el programa.",
+                    "Hacer una pregunta"
+                  )
+                }
                 variant="outline"
                 className="w-full justify-start text-sm"
               >
                 Hacer una pregunta
               </Button>
               <Button
-                onClick={() => handleWhatsAppClick("¡Hola! Quiero comenzar mi transformación hoy.")}
+                onClick={() =>
+                  handleWhatsAppClick(
+                    "¡Hola! Quiero comenzar mi transformación hoy.",
+                    "Comenzar ahora"
+                  )
+                }
                 variant="outline"
                 className="w-full justify-start text-sm"
               >
@@ -52,7 +77,7 @@ export const WhatsAppFloat = () => {
             </div>
           </div>
         )}
-        
+
         <Button
           onClick={() => setIsOpen(!isOpen)}
           size="lg"
