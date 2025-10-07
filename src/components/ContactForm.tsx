@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Send, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -15,22 +16,107 @@ export const ContactForm = () => {
     telefono: "",
     mensaje: "",
   });
+  const [leadId, setLeadId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const saveTimeoutRef = useRef<NodeJS.Timeout>();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Auto-save form data to capture partial leads
+  useEffect(() => {
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    // Only save if there's some data
+    if (formData.nombre || formData.email || formData.telefono || formData.mensaje) {
+      saveTimeoutRef.current = setTimeout(async () => {
+        try {
+          const source = document.referrer || "direct";
+          
+          if (leadId) {
+            // Update existing lead
+            await supabase
+              .from("leads")
+              .update({
+                name: formData.nombre,
+                email: formData.email,
+                phone: formData.telefono,
+                message: formData.mensaje,
+              })
+              .eq("id", leadId);
+          } else {
+            // Create new lead
+            const { data, error } = await supabase
+              .from("leads")
+              .insert({
+                name: formData.nombre,
+                email: formData.email,
+                phone: formData.telefono,
+                message: formData.mensaje,
+                source: source,
+                submitted: false,
+              })
+              .select()
+              .single();
+
+            if (data && !error) {
+              setLeadId(data.id);
+            }
+          }
+        } catch (error) {
+          console.error("Error saving lead:", error);
+        }
+      }, 1000); // Save after 1 second of inactivity
+    }
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [formData, leadId]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Construir mensaje para WhatsApp
-    const whatsappMessage = `¡Hola! Me interesa tu programa de bienestar.%0A%0A*Nombre:* ${formData.nombre}%0A*Email:* ${formData.email}%0A*Teléfono:* ${formData.telefono}%0A*Mensaje:* ${formData.mensaje}`;
-    
-    // Abrir WhatsApp (reemplaza con tu número real)
-    window.open(`https://wa.me/17872101758?text=${whatsappMessage}`, '_blank');
-    
-    toast({
-      title: "¡Mensaje enviado!",
-      description: "Te contactaré pronto para ayudarte a comenzar tu transformación.",
-    });
-    
-    setFormData({ nombre: "", email: "", telefono: "", mensaje: "" });
+    try {
+      // Mark lead as submitted
+      if (leadId) {
+        await supabase
+          .from("leads")
+          .update({ submitted: true })
+          .eq("id", leadId);
+      }
+
+      // Send email via edge function
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: formData.nombre,
+          email: formData.email,
+          phone: formData.telefono,
+          message: formData.mensaje,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Revisa tu correo, te he enviado una confirmación. Te contactaré pronto.",
+      });
+      
+      setFormData({ nombre: "", email: "", telefono: "", mensaje: "" });
+      setLeadId(null);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -107,9 +193,10 @@ export const ContactForm = () => {
 
                 <Button 
                   type="submit" 
+                  disabled={isSubmitting}
                   className="w-full h-12 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
                 >
-                  Enviar Mensaje
+                  {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
                   <Send className="ml-2 w-5 h-5" />
                 </Button>
               </form>
