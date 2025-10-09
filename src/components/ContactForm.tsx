@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Send, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -14,6 +15,11 @@ export const ContactForm = () => {
     nombre: "",
     email: "",
     telefono: "",
+    meta: "",
+    tiempo: "",
+    ejercicio: "",
+    trabajo: "",
+    tiempoDisponible: "",
     mensaje: "",
   });
   const [leadId, setLeadId] = useState<string | null>(null);
@@ -27,10 +33,11 @@ export const ContactForm = () => {
     }
 
     // Only save if there's some data
-    if (formData.nombre || formData.email || formData.telefono || formData.mensaje) {
+    if (formData.nombre || formData.email || formData.telefono || formData.mensaje || formData.meta) {
       saveTimeoutRef.current = setTimeout(async () => {
         try {
           const source = document.referrer || "direct";
+          const detailedMessage = `Meta: ${formData.meta}\nTiempo deseado: ${formData.tiempo}\nHace ejercicio: ${formData.ejercicio}\nTrabaja: ${formData.trabajo}\nTiempo disponible: ${formData.tiempoDisponible}\n\nMensaje adicional: ${formData.mensaje}`;
           
           if (leadId) {
             // Update existing lead
@@ -40,7 +47,7 @@ export const ContactForm = () => {
                 name: formData.nombre,
                 email: formData.email,
                 phone: formData.telefono,
-                message: formData.mensaje,
+                message: detailedMessage,
               })
               .eq("id", leadId);
           } else {
@@ -51,7 +58,7 @@ export const ContactForm = () => {
                 name: formData.nombre,
                 email: formData.email,
                 phone: formData.telefono,
-                message: formData.mensaje,
+                message: detailedMessage,
                 source: source,
                 submitted: false,
               })
@@ -89,12 +96,14 @@ export const ContactForm = () => {
       }
 
       // Send email via edge function
+      const detailedMessage = `Meta: ${formData.meta}\nTiempo deseado: ${formData.tiempo}\nHace ejercicio: ${formData.ejercicio}\nTrabaja: ${formData.trabajo}\nTiempo disponible: ${formData.tiempoDisponible}\n\nMensaje adicional: ${formData.mensaje}`;
+      
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: formData.nombre,
           email: formData.email,
           phone: formData.telefono,
-          message: formData.mensaje,
+          message: detailedMessage,
         },
       });
 
@@ -105,7 +114,17 @@ export const ContactForm = () => {
         description: "Revisa tu correo, te he enviado una confirmación. Te contactaré pronto.",
       });
       
-      setFormData({ nombre: "", email: "", telefono: "", mensaje: "" });
+      setFormData({ 
+        nombre: "", 
+        email: "", 
+        telefono: "", 
+        meta: "",
+        tiempo: "",
+        ejercicio: "",
+        trabajo: "",
+        tiempoDisponible: "",
+        mensaje: "" 
+      });
       setLeadId(null);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -179,15 +198,115 @@ export const ContactForm = () => {
                 </div>
 
                 <div>
+                  <Label htmlFor="meta" className="text-base font-semibold mb-2 block">
+                    ¿Cuál es tu meta principal? *
+                  </Label>
+                  <Select
+                    value={formData.meta}
+                    onValueChange={(value) => setFormData({ ...formData, meta: value })}
+                  >
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Selecciona tu meta" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="perdida-peso">Pérdida de Peso</SelectItem>
+                      <SelectItem value="tonificacion">Tonificación</SelectItem>
+                      <SelectItem value="energia">Más Energía y Vitalidad</SelectItem>
+                      <SelectItem value="alimentacion">Alimentación Consciente</SelectItem>
+                      <SelectItem value="otro">Otro</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="tiempo" className="text-base font-semibold mb-2 block">
+                    ¿En cuánto tiempo deseas completar tu meta?
+                  </Label>
+                  <Select
+                    value={formData.tiempo}
+                    onValueChange={(value) => setFormData({ ...formData, tiempo: value })}
+                  >
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Selecciona un tiempo" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1-3-meses">1-3 meses</SelectItem>
+                      <SelectItem value="3-6-meses">3-6 meses</SelectItem>
+                      <SelectItem value="6-12-meses">6-12 meses</SelectItem>
+                      <SelectItem value="mas-12-meses">Más de 12 meses</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="ejercicio" className="text-base font-semibold mb-2 block">
+                    ¿Actualmente haces ejercicio?
+                  </Label>
+                  <Select
+                    value={formData.ejercicio}
+                    onValueChange={(value) => setFormData({ ...formData, ejercicio: value })}
+                  >
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Selecciona una opción" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="si-regularmente">Sí, regularmente (3+ veces/semana)</SelectItem>
+                      <SelectItem value="ocasionalmente">Ocasionalmente (1-2 veces/semana)</SelectItem>
+                      <SelectItem value="no">No, no hago ejercicio actualmente</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="trabajo" className="text-base font-semibold mb-2 block">
+                    ¿Trabajas actualmente?
+                  </Label>
+                  <Select
+                    value={formData.trabajo}
+                    onValueChange={(value) => setFormData({ ...formData, trabajo: value })}
+                  >
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Selecciona una opción" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="tiempo-completo">Sí, tiempo completo</SelectItem>
+                      <SelectItem value="medio-tiempo">Sí, medio tiempo</SelectItem>
+                      <SelectItem value="hogar">Trabajo desde casa / Ama de casa</SelectItem>
+                      <SelectItem value="no-trabajo">No trabajo actualmente</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="tiempoDisponible" className="text-base font-semibold mb-2 block">
+                    ¿Cuánto tiempo tienes disponible para ejercicio?
+                  </Label>
+                  <Select
+                    value={formData.tiempoDisponible}
+                    onValueChange={(value) => setFormData({ ...formData, tiempoDisponible: value })}
+                  >
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Selecciona una opción" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="menos-30min">Menos de 30 minutos al día</SelectItem>
+                      <SelectItem value="30-60min">30-60 minutos al día</SelectItem>
+                      <SelectItem value="1-2horas">1-2 horas al día</SelectItem>
+                      <SelectItem value="mas-2horas">Más de 2 horas al día</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
                   <Label htmlFor="mensaje" className="text-base font-semibold mb-2 block">
-                    Cuéntame Sobre Tus Metas
+                    ¿Algo más que quieras compartir? (Opcional)
                   </Label>
                   <Textarea
                     id="mensaje"
                     value={formData.mensaje}
                     onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
-                    placeholder="¿Qué te gustaría lograr? (pérdida de peso, tonificación, más energía, etc.)"
-                    rows={5}
+                    placeholder="Cuéntame más sobre tus retos, motivaciones o preguntas..."
+                    rows={4}
                   />
                 </div>
 
@@ -196,7 +315,7 @@ export const ContactForm = () => {
                   disabled={isSubmitting}
                   className="w-full h-12 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
                 >
-                  {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+                  {isSubmitting ? "Enviando..." : "Quiero Mi Plan Personalizado"}
                   <Send className="ml-2 w-5 h-5" />
                 </Button>
               </form>
