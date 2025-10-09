@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Heart, Target, Award } from "lucide-react";
 import arianaTransformation from "@/assets/ariana-transformation.png";
+import arianaTransformationAngles from "@/assets/ariana-transformation-angles.jpeg";
 import arianaProfile from "@/assets/ariana-profile.jpeg";
 
 export const AboutMe = () => {
@@ -33,20 +34,30 @@ export const AboutMe = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="relative">
-                <img 
-                  src={arianaTransformation} 
-                  alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
-                  className="rounded-lg shadow-2xl w-full h-auto"
-                />
+            <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="relative">
+                  <img 
+                    src={arianaTransformation} 
+                    alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
+                    className="rounded-lg shadow-2xl w-full h-auto"
+                  />
+                </div>
+                
+                <div className="relative">
+                  <img 
+                    src={arianaProfile} 
+                    alt="Ariana Cruz - Embajadora de Bienestar y Salud" 
+                    className="rounded-lg shadow-2xl w-full h-auto object-cover"
+                  />
+                </div>
               </div>
               
               <div className="relative">
                 <img 
-                  src={arianaProfile} 
-                  alt="Ariana Cruz - Embajadora de Bienestar y Salud" 
-                  className="rounded-lg shadow-2xl w-full h-auto object-cover"
+                  src={arianaTransformationAngles} 
+                  alt="Transformación de Ariana Cruz - Múltiples ángulos mostrando resultados" 
+                  className="rounded-lg shadow-2xl w-full h-auto"
                 />
               </div>
             </div>
