@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Heart, Target, Award } from "lucide-react";
 import arianaTransformation from "@/assets/ariana-transformation.png";
+import arianaProfile from "@/assets/ariana-profile.jpeg";
 
 export const AboutMe = () => {
   return (
@@ -9,7 +10,7 @@ export const AboutMe = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Conoce a Ariana Cruz Colón
+              Conoce a Ariana Cruz
             </h2>
             <p className="text-xl text-muted-foreground">
               Embajadora de Bienestar y Salud
@@ -32,15 +33,27 @@ export const AboutMe = () => {
               </p>
             </div>
 
-            <div className="relative">
-              <img 
-                src={arianaTransformation} 
-                alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
-                className="rounded-lg shadow-2xl w-full h-auto"
-              />
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="relative">
+                <img 
+                  src={arianaTransformation} 
+                  alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
+                  className="rounded-lg shadow-2xl w-full h-auto"
+                />
+              </div>
+              
+              <div className="relative">
+                <img 
+                  src={arianaProfile} 
+                  alt="Ariana Cruz - Embajadora de Bienestar y Salud" 
+                  className="rounded-lg shadow-2xl w-full h-auto object-cover"
+                />
+              </div>
             </div>
+          </div>
 
-            <div className="space-y-6">
+          <div className="md:col-span-2">
+            <div className="grid md:grid-cols-3 gap-6">
               <Card className="p-6 border-2 border-primary/20">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">

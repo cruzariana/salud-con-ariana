@@ -1,14 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-import nutritionImage from "@/assets/nutrition-plan.jpg";
-import communityImage from "@/assets/community.jpg";
-import supplementsImage from "@/assets/supplements.jpg";
+import weightLossImage from "@/assets/weight-loss-plan.jpg";
+import toningImage from "@/assets/toning-plan.jpg";
+import energyImage from "@/assets/energy-plan.jpg";
 
 const plans = [
   {
     title: "Pérdida de Peso",
-    image: nutritionImage,
+    image: weightLossImage,
     description: "Alcanza tu peso ideal de forma saludable y sostenible",
     features: [
       "Plan de alimentación personalizado",
@@ -20,7 +20,7 @@ const plans = [
   },
   {
     title: "Tonificación",
-    image: communityImage,
+    image: toningImage,
     description: "Define y esculpe tu cuerpo con nuestro programa integral",
     features: [
       "Rutinas de ejercicio específicas",
@@ -32,7 +32,7 @@ const plans = [
   },
   {
     title: "Energía y Vitalidad",
-    image: supplementsImage,
+    image: energyImage,
     description: "Aumenta tu energía y mejora tu calidad de vida",
     features: [
       "Suplementos energizantes naturales",
