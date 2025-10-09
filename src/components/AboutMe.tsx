@@ -13,15 +13,25 @@ export const AboutMe = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Conoce a Ariana Cruz
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground mb-8">
               Embajadora de Bienestar y Salud
             </p>
+            
+            {/* Foto elegante centrada */}
+            <div className="max-w-md mx-auto mb-16">
+              <img 
+                src={arianaProfile} 
+                alt="Ariana Cruz - Embajadora de Bienestar y Salud" 
+                className="rounded-lg shadow-2xl w-full h-auto"
+              />
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          {/* Historia y foto de transformación lado a lado */}
+          <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Soy <span className="font-bold text-primary">Ariana Cruz Colón</span>, Embajadora de Bienestar y Salud, apasionada por ayudar a otros a transformar su vida desde adentro hacia afuera. Mi camino comenzó con una meta personal: recuperar mi energía, mi autoestima y mi confianza.
+                Soy <span className="font-bold text-primary">Ariana Cruz</span>, Embajadora de Bienestar y Salud, apasionada por ayudar a otros a transformar su vida desde adentro hacia afuera. Mi camino comenzó con una meta personal: recuperar mi energía, mi autoestima y mi confianza.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 A través de disciplina, apoyo, cambios de hábitos y la integración de productos naturales y efectivos, logré una transformación real: <span className="font-bold text-primary">perdí 30 lb</span> y gané una nueva versión de mí misma, más saludable, fuerte y plena.
@@ -34,33 +44,22 @@ export const AboutMe = () => {
               </p>
             </div>
 
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="relative">
-                  <img 
-                    src={arianaTransformation} 
-                    alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
-                    className="rounded-lg shadow-2xl w-full h-auto"
-                  />
-                </div>
-                
-                <div className="relative">
-                  <img 
-                    src={arianaProfile} 
-                    alt="Ariana Cruz - Embajadora de Bienestar y Salud" 
-                    className="rounded-lg shadow-2xl w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
-              
-              <div className="relative">
-                <img 
-                  src={arianaTransformationAngles} 
-                  alt="Transformación de Ariana Cruz - Múltiples ángulos mostrando resultados" 
-                  className="rounded-lg shadow-2xl w-full h-auto"
-                />
-              </div>
+            <div className="relative">
+              <img 
+                src={arianaTransformation} 
+                alt="Transformación de Ariana Cruz - Antes y después de perder 30 libras" 
+                className="rounded-lg shadow-2xl w-full h-auto"
+              />
             </div>
+          </div>
+
+          {/* Foto de múltiples ángulos abajo */}
+          <div className="mb-16">
+            <img 
+              src={arianaTransformationAngles} 
+              alt="Transformación de Ariana Cruz - Múltiples ángulos mostrando resultados" 
+              className="rounded-lg shadow-2xl w-full h-auto"
+            />
           </div>
 
           <div className="md:col-span-2">
