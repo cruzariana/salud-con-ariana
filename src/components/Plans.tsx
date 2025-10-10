@@ -63,7 +63,7 @@ export const Plans = () => {
             Cada plan incluye suplementos especializados según tu meta específica
           </p>
           <div className="inline-block bg-primary/10 text-primary px-6 py-3 rounded-full">
-            <p className="text-lg font-bold">Desde $179 - Incluye Envío y Membresía GRATIS</p>
+            <p className="text-xl font-bold">Planes desde $179</p>
           </div>
         </div>
 

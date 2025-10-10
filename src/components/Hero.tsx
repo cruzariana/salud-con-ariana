@@ -32,9 +32,9 @@ export const Hero = () => {
         <div className="max-w-3xl">
           
           {/* Oferta por tiempo limitado */}
-          <div className="inline-block bg-accent/20 backdrop-blur-sm border-2 border-accent text-white px-6 py-3 rounded-full mb-6 animate-pulse">
-            <p className="text-sm md:text-base font-bold">
-              🎁 OFERTA POR TIEMPO LIMITADO: Inscripción y Envío GRATIS
+          <div className="inline-block bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-full mb-6 animate-pulse shadow-lg">
+            <p className="text-lg md:text-2xl font-bold">
+              ⚡ Por Tiempo Limitado: Recibe Inscripción y Envío GRATIS
             </p>
           </div>
 

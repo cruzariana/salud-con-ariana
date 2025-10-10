@@ -18,7 +18,6 @@ export const ContactForm = () => {
     meta: "",
     tiempo: "",
     ejercicio: "",
-    trabajo: "",
     tiempoDisponible: "",
     mensaje: "",
   });
@@ -37,7 +36,7 @@ export const ContactForm = () => {
       saveTimeoutRef.current = setTimeout(async () => {
         try {
           const source = document.referrer || "direct";
-          const detailedMessage = `Meta: ${formData.meta}\nTiempo deseado: ${formData.tiempo}\nHace ejercicio: ${formData.ejercicio}\nTrabaja: ${formData.trabajo}\nTiempo disponible: ${formData.tiempoDisponible}\n\nMensaje adicional: ${formData.mensaje}`;
+          const detailedMessage = `Meta: ${formData.meta}\nTiempo deseado: ${formData.tiempo}\nHace ejercicio: ${formData.ejercicio}\nTiempo disponible: ${formData.tiempoDisponible}\n\nMensaje adicional: ${formData.mensaje}`;
           
           if (leadId) {
             // Update existing lead
@@ -96,7 +95,7 @@ export const ContactForm = () => {
       }
 
       // Send email via edge function
-      const detailedMessage = `Meta: ${formData.meta}\nTiempo deseado: ${formData.tiempo}\nHace ejercicio: ${formData.ejercicio}\nTrabaja: ${formData.trabajo}\nTiempo disponible: ${formData.tiempoDisponible}\n\nMensaje adicional: ${formData.mensaje}`;
+      const detailedMessage = `Meta: ${formData.meta}\nTiempo deseado: ${formData.tiempo}\nHace ejercicio: ${formData.ejercicio}\nTiempo disponible: ${formData.tiempoDisponible}\n\nMensaje adicional: ${formData.mensaje}`;
       
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -121,7 +120,7 @@ export const ContactForm = () => {
         meta: "",
         tiempo: "",
         ejercicio: "",
-        trabajo: "",
+        
         tiempoDisponible: "",
         mensaje: "" 
       });
@@ -257,25 +256,6 @@ export const ContactForm = () => {
                   </Select>
                 </div>
 
-                <div>
-                  <Label htmlFor="trabajo" className="text-base font-semibold mb-2 block">
-                    ¿Trabajas actualmente?
-                  </Label>
-                  <Select
-                    value={formData.trabajo}
-                    onValueChange={(value) => setFormData({ ...formData, trabajo: value })}
-                  >
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Selecciona una opción" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="tiempo-completo">Sí, tiempo completo</SelectItem>
-                      <SelectItem value="medio-tiempo">Sí, medio tiempo</SelectItem>
-                      <SelectItem value="hogar">Trabajo desde casa / Ama de casa</SelectItem>
-                      <SelectItem value="no-trabajo">No trabajo actualmente</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
 
                 <div>
                   <Label htmlFor="tiempoDisponible" className="text-base font-semibold mb-2 block">
@@ -343,11 +323,19 @@ export const ContactForm = () => {
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">✓</span>
-                    <span>Productos premium de alta calidad</span>
+                    <span>Productos certificados con más de 69 años en el mercado</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">✓</span>
-                    <span>Respaldados por ciencia y nutrición</span>
+                    <span>Presencia global con estándares de calidad excepcionales</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Respaldados por ciencia y pruebas clínicas rigurosas</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Certificación climáticamente neutral y compromiso ambiental</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">✓</span>

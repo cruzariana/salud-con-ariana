@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Users, Heart, TrendingUp, Award } from "lucide-react";
-import communityImage from "@/assets/community.jpg";
+import communityImage from "@/assets/community-giro180.jpeg";
 
 export const Community = () => {
   return (
