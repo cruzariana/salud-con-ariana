@@ -49,7 +49,7 @@ export const Hero = () => {
             Alcanza tus metas de salud con planes personalizados de alimentación, ejercicio y suplementos diseñados especialmente para ti.
           </p>
 
-          <p className="text-lg md:text-xl text-accent font-bold mb-8 animate-slide-up animation-delay-300">
+          <p className="text-lg md:text-xl text-accent font-bold mb-8 animate-slide-up animation-delay-300 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] [text-shadow:_2px_2px_4px_rgb(0_0_0_/_80%)]">
             Da el primer paso hoy y únete a más de 2,762 mujeres transformadas
           </p>
           
