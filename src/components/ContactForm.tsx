@@ -298,6 +298,10 @@ export const ContactForm = () => {
                   {isSubmitting ? "Enviando..." : "Quiero Mi Plan Personalizado"}
                   <Send className="ml-2 w-5 h-5" />
                 </Button>
+
+                <p className="text-center text-sm text-muted-foreground mt-4">
+                  Tu información es confidencial. Te responderé personalmente en menos de 24 h 💬
+                </p>
               </form>
             </Card>
 

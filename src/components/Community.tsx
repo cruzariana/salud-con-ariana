@@ -92,8 +92,11 @@ export const Community = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-lg text-muted-foreground mb-3">
               No estás sola en este camino. Nuestra comunidad te apoyará en cada paso.
+            </p>
+            <p className="text-xl text-foreground/80 mb-6 italic font-medium">
+              Porque juntas es más fácil. Nuestra comunidad te acompaña paso a paso.
             </p>
             <a 
               href="#contacto" 

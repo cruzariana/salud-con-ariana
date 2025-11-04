@@ -107,6 +107,13 @@ export const AboutMe = () => {
               </Card>
             </div>
           </div>
+
+          {/* CTA suave al final de la historia */}
+          <div className="text-center mt-12 p-8 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl">
+            <p className="text-2xl font-bold text-foreground mb-4">
+              Si yo pude, tú también puedes. Empieza hoy.
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -6,30 +6,35 @@ import { ArrowRight } from "lucide-react";
 const benefits = [
   {
     icon: Heart,
+    emotionalPhrase: "Come rico y saludable",
     title: "Nutrición Personalizada",
     description: "Planes de alimentación 100% adaptados a tus necesidades, objetivos y estilo de vida. Diseñamos tu menú considerando tus preferencias, alergias, horarios y metas específicas para que logres resultados sostenibles.",
     details: "Incluye ajustes mensuales según tu progreso",
   },
   {
     icon: Users,
+    emotionalPhrase: "Nunca estarás sola",
     title: "Comunidad de Apoyo",
     description: "Únete a una red vibrante de mujeres comprometidas con su bienestar y transformación personal. Comparte experiencias, recetas, motivación y celebra cada logro en un ambiente positivo y sin juicios.",
     details: "Acceso a grupo privado y sesiones grupales",
   },
   {
     icon: Dumbbell,
+    emotionalPhrase: "Disfruta el proceso",
     title: "Rutinas de Ejercicio",
     description: "Programas de entrenamiento personalizados diseñados para todos los niveles de condición física. Desde principiantes hasta avanzados, con rutinas que se adaptan a tu tiempo disponible y equipo que tengas en casa o gym.",
     details: "Videos demostrativos y seguimiento semanal",
   },
   {
     icon: Zap,
+    emotionalPhrase: "Potencia tus resultados",
     title: "Suplementos Premium",
-    description: "Productos Shaklee de máxima calidad respaldados por ciencia para potenciar tu energía, recuperación y resultados. Suplementación estratégica que complementa tu nutrición y acelera tu transformación de manera saludable.",
+    description: "Productos de máxima calidad respaldados por ciencia para potenciar tu energía, recuperación y resultados. Suplementación estratégica que complementa tu nutrición y acelera tu transformación de manera saludable.",
     details: "Recomendaciones personalizadas según tus necesidades",
   },
   {
     icon: Gift,
+    emotionalPhrase: "Gana mientras te transformas",
     title: "Programa de Lealtad",
     description: "Por mantener tu orden mensual en auto-envío, ganas un punto por cada dólar gastado que luego puedes redimir en productos. Mientras más constante seas con tu transformación, más beneficios obtienes.",
     details: "Acumula puntos y obtén productos gratis",
@@ -64,6 +69,9 @@ export const Benefits = () => {
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <benefit.icon className="w-8 h-8 text-white" />
               </div>
+              <p className="text-sm text-primary/70 italic mb-2">
+                {benefit.emotionalPhrase}
+              </p>
               <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
                 {benefit.title}
               </h3>
@@ -77,7 +85,7 @@ export const Benefits = () => {
                 variant="ghost" 
                 className="w-full group-hover:bg-primary group-hover:text-white transition-all mt-auto"
               >
-                Ver Planes
+                Descubre Tu Plan Ideal
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Card>

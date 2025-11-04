@@ -29,7 +29,7 @@ export const WhatsAppFloat = () => {
         {isOpen && (
           <div className="mb-4 bg-card border border-border rounded-lg shadow-lg p-4 w-72 animate-in slide-in-from-bottom-2">
             <div className="flex justify-between items-center mb-3">
-              <h3 className="font-semibold text-foreground">¿Cómo te puedo ayudar?</h3>
+              <h3 className="font-semibold text-foreground">Habla conmigo ahora</h3>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-muted-foreground hover:text-foreground"

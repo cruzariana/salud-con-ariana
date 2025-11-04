@@ -59,12 +59,9 @@ export const Plans = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Planes Diseñados Para Ti
           </h2>
-          <p className="text-xl text-muted-foreground mb-6">
+          <p className="text-xl text-muted-foreground">
             Cada plan incluye suplementos especializados según tu meta específica
           </p>
-          <div className="inline-block bg-primary/10 text-primary px-6 py-3 rounded-full">
-            <p className="text-xl font-bold">Planes desde $179</p>
-          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -112,6 +109,16 @@ export const Plans = () => {
               </div>
             </Card>
           ))}
+        </div>
+
+        {/* Pricing info moved to bottom */}
+        <div className="text-center mt-12 max-w-2xl mx-auto">
+          <p className="text-2xl text-muted-foreground mb-3">
+            Planes personalizados desde <span className="font-bold text-primary">$179</span> según tu meta y progreso.
+          </p>
+          <p className="text-lg text-muted-foreground/80">
+            Incluye plan de alimentación, guía de ejercicios, suplementos premium y acompañamiento personalizado.
+          </p>
         </div>
       </div>
     </section>
