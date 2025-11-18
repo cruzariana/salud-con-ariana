@@ -20,14 +20,38 @@ interface ContactEmailRequest {
   email: string;
   phone: string;
   message: string;
+  recaptchaToken: string;
+}
+
+// Verify reCAPTCHA token
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  try {
+    const secret = Deno.env.get("RECAPTCHA_SECRET_KEY");
+    if (!secret) {
+      console.error("RECAPTCHA_SECRET_KEY not configured");
+      return false;
+    }
+
+    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${secret}&response=${token}`,
+    });
+
+    const data = await response.json();
+    return data.success === true;
+  } catch (error) {
+    console.error("reCAPTCHA verification error:", error);
+    return false;
+  }
 }
 
 // Input validation and sanitization
 function validateAndSanitize(data: ContactEmailRequest): { valid: boolean; error?: string; sanitized?: ContactEmailRequest } {
-  const { name, email, phone, message } = data;
+  const { name, email, phone, message, recaptchaToken } = data;
 
   // Validate required fields
-  if (!name || !email || !phone || !message) {
+  if (!name || !email || !phone || !message || !recaptchaToken) {
     return { valid: false, error: "Todos los campos son requeridos" };
   }
 
@@ -63,6 +87,7 @@ function validateAndSanitize(data: ContactEmailRequest): { valid: boolean; error
     email: email.trim().toLowerCase(),
     phone: phone.trim().replace(/[<>]/g, ""),
     message: message.trim().replace(/[<>]/g, ""),
+    recaptchaToken: recaptchaToken.trim(),
   };
 
   return { valid: true, sanitized };
@@ -122,7 +147,20 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { name, email, phone, message } = validation.sanitized!;
+    const { name, email, phone, message, recaptchaToken } = validation.sanitized!;
+
+    // Verify reCAPTCHA
+    const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
+    if (!isRecaptchaValid) {
+      console.warn("reCAPTCHA verification failed");
+      return new Response(
+        JSON.stringify({ error: "Verificación de seguridad fallida. Por favor intenta de nuevo." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
 
     // Check rate limiting
     const rateLimitCheck = await checkRateLimit(email);
