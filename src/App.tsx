@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer";
+import DigitalProduct from "./pages/DigitalProduct";
+import FreeConsultation from "./pages/FreeConsultation";
+import FreebieOffer from "./pages/FreebieOffer";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +25,9 @@ const App = () => (
           <Route path="/privacidad" element={<Privacy />} />
           <Route path="/terminos" element={<Terms />} />
           <Route path="/descargo" element={<Disclaimer />} />
+          <Route path="/guia-completa" element={<DigitalProduct />} />
+          <Route path="/consulta-gratis" element={<FreeConsultation />} />
+          <Route path="/recursos-gratis" element={<FreebieOffer />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
