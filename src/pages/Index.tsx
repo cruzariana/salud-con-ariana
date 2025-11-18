@@ -6,6 +6,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { Community } from "@/components/Community";
 import { ContactForm } from "@/components/ContactForm";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { MonetizationBanner } from "@/components/MonetizationBanner";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <Testimonials />
       <Community />
       <Plans />
+      <MonetizationBanner />
       <ContactForm />
       <WhatsAppFloat />
       
