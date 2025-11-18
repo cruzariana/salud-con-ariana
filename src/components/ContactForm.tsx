@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Send, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -23,7 +24,9 @@ export const ContactForm = () => {
   });
   const [leadId, setLeadId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const saveTimeoutRef = useRef<NodeJS.Timeout>();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   // Auto-save form data to capture partial leads
   useEffect(() => {
@@ -83,6 +86,16 @@ export const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!recaptchaToken) {
+      toast({
+        title: "Verificación requerida",
+        description: "Por favor completa la verificación reCAPTCHA.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
@@ -103,6 +116,7 @@ export const ContactForm = () => {
           email: formData.email,
           phone: formData.telefono,
           message: detailedMessage,
+          recaptchaToken,
         },
       });
 
@@ -120,11 +134,12 @@ export const ContactForm = () => {
         meta: "",
         tiempo: "",
         ejercicio: "",
-        
         tiempoDisponible: "",
         mensaje: "" 
       });
       setLeadId(null);
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -285,19 +300,28 @@ export const ContactForm = () => {
                     id="mensaje"
                     value={formData.mensaje}
                     onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
-                    placeholder="Cuéntame más sobre tus retos, motivaciones o preguntas..."
-                    rows={4}
-                  />
-                </div>
+                  placeholder="Cuéntame más sobre tus retos, motivaciones o preguntas..."
+                  rows={4}
+                />
+              </div>
 
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full h-12 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
-                >
-                  {isSubmitting ? "Enviando..." : "Quiero Mi Plan Personalizado"}
-                  <Send className="ml-2 w-5 h-5" />
-                </Button>
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey="6LcJFAIsAAAAAMUc10B2JYvtogJrvKpd2ZQOe6yr"
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              </div>
+
+              <Button 
+                type="submit" 
+                disabled={isSubmitting || !recaptchaToken}
+                className="w-full h-12 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+              >
+                {isSubmitting ? "Enviando..." : "Quiero Mi Plan Personalizado"}
+                <Send className="ml-2 w-5 h-5" />
+              </Button>
 
                 <p className="text-center text-sm text-muted-foreground mt-4">
                   Tu información es confidencial. Te responderé personalmente en menos de 24 h 💬
