@@ -308,14 +308,11 @@ export const ContactForm = () => {
               <div className="flex justify-center">
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="TU_SITE_KEY_AQUI"
+                  sitekey="6LcJFAIsAAAAAMUc10B2JYvtogJrvKLpdZZOe6yr"
                   onChange={(token) => setRecaptchaToken(token)}
                   onExpired={() => setRecaptchaToken(null)}
                 />
               </div>
-              <p className="text-xs text-center text-muted-foreground mt-2">
-                ⚠️ Reemplaza TU_SITE_KEY_AQUI con tu Google reCAPTCHA Site Key
-              </p>
 
               <Button 
                 type="submit" 
