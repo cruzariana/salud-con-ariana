@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { CheckCircle2, Download, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import smoothieBowl from "@/assets/recipe-smoothie-bowl.jpg";
 import omelet from "@/assets/recipe-omelet.jpg";
 import chickenSalad from "@/assets/recipe-chicken-salad.jpg";
@@ -214,15 +215,45 @@ export default function FreebieOffer() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate email submission
-    setTimeout(() => {
+    try {
+      // Guardar email en base de datos
+      const { error: dbError } = await supabase
+        .from('leads')
+        .insert([{ 
+          email, 
+          source: 'freebie_offer',
+          submitted: true 
+        }]);
+
+      if (dbError) {
+        console.error("Error saving to database:", dbError);
+      }
+
+      // Enviar email con las recetas
+      const { error: emailError } = await supabase.functions.invoke('send-freebie-email', {
+        body: { email, name: email.split('@')[0] }
+      });
+
+      if (emailError) {
+        console.error("Error sending email:", emailError);
+        throw emailError;
+      }
+
       toast({
         title: "¡Listo! 🎉",
         description: "Revisa tu email para descargar tus 7 recetas gratis.",
       });
-      setIsSubmitting(false);
       setEmail("");
-    }, 1500);
+    } catch (error) {
+      console.error("Error:", error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema. Por favor intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
