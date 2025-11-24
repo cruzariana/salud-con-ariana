@@ -35,7 +35,7 @@ export default function DigitalProduct() {
               🔥 Oferta Limitada - Acceso Instantáneo
             </span>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Transformación Giro180: Sistema Completo de 30 Días
+              Transformación Giro180: Tu Sistema Completo de 30 Días
             </h1>
             <p className="text-xl text-muted-foreground mb-6">
               El mismo sistema que usan más de 500 mujeres en mi programa de coaching para perder 5-10 libras y reducir pulgadas en solo 30 días
@@ -58,9 +58,9 @@ export default function DigitalProduct() {
               <ul className="space-y-4">
                 {[
                   "📅 Plan de Alimentación 30 Días - 4 semanas de menús completos con listas de compras",
-                  "🍽️ 20+ Recetas Shaklee - Desayunos, almuerzos, cenas y snacks balanceados",
+                  "🍽️ 20+ Recetas Balanceadas - Desayunos, almuerzos, cenas y snacks nutritivos",
                   "💪 Rutinas de Ejercicio Mixtas - Cardio, fuerza, piernas, brazos y glúteos (20-30 min)",
-                  "💊 Guía de Suplementación Shaklee - Cómo maximizar resultados con los productos correctos",
+                  "💊 Guía de Suplementación - Cómo maximizar resultados con los productos correctos",
                   "📊 Sistema de Seguimiento - Plantillas para medir progreso y mantener motivación",
                   "🥗 Guía de Meal Prep - Prepara comidas de la semana en 2 horas",
                   "🔄 Opciones de Sustitución - Alternativas para cada receta según tus preferencias",
@@ -87,19 +87,7 @@ export default function DigitalProduct() {
                 </div>
               </Card>
 
-              <Card className="p-6 bg-secondary/5 border-2 border-secondary">
-                <div className="flex items-center gap-3 mb-4">
-                  <Target className="w-8 h-8 text-secondary" />
-                  <div>
-                    <p className="font-bold text-lg">Garantía 7 Días</p>
-                    <p className="text-sm text-muted-foreground">
-                      Si no ves resultados, devolvemos tu dinero
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Button 
+              <Button
                 size="lg" 
                 className="w-full h-16 text-xl bg-gradient-to-r from-primary to-accent hover:opacity-90"
                 asChild
@@ -119,7 +107,7 @@ export default function DigitalProduct() {
           {/* Metodología Section */}
           <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10 mb-12">
             <h2 className="text-2xl font-bold mb-6 text-center">
-              El Método Giro180 - Filosofía Shaklee
+              El Método Giro180 - Filosofía de Bienestar
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               {[
@@ -136,7 +124,7 @@ export default function DigitalProduct() {
                 {
                   icon: "🎯",
                   title: "Suplementación Inteligente",
-                  desc: "Productos Shaklee específicos para maximizar resultados y longevidad"
+                  desc: "Productos específicos para maximizar resultados y longevidad"
                 }
               ].map((item, i) => (
                 <div key={i} className="text-center">
@@ -208,7 +196,7 @@ export default function DigitalProduct() {
                 <div className="relative overflow-hidden rounded-lg shadow-md">
                   <img 
                     src={supplementsImg} 
-                    alt="Suplementos Shaklee"
+                    alt="Guía de Suplementación"
                     className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
@@ -235,7 +223,7 @@ export default function DigitalProduct() {
                   desc: "El mismo método que uso con mis clientes de coaching privado ($179+ valor)"
                 },
                 {
-                  title: "Filosofía Shaklee",
+                  title: "Filosofía de Bienestar",
                   desc: "Longevidad y bienestar integral, no dietas extremas ni privación"
                 },
                 {
