@@ -2,6 +2,17 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, Download, Clock, Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import recipeSmoothieBowl from "@/assets/recipe-smoothie-bowl.jpg";
+import recipeOmelet from "@/assets/recipe-omelet.jpg";
+import recipeChickenSalad from "@/assets/recipe-chicken-salad.jpg";
+import recipeQuinoaBowl from "@/assets/recipe-quinoa-bowl.jpg";
+import recipeSalmonDinner from "@/assets/recipe-salmon-dinner.jpg";
+import recipeTurkeyStirf from "@/assets/recipe-turkey-stirfry.jpg";
+import recipeYogurtParfait from "@/assets/recipe-yogurt-parfait.jpg";
+import energyPlan from "@/assets/energy-plan.jpg";
+import toningPlan from "@/assets/toning-plan.jpg";
+import weightLossPlan from "@/assets/weight-loss-plan.jpg";
+import supplementsImg from "@/assets/supplements.jpg";
 
 export default function DigitalProduct() {
   const navigate = useNavigate();
@@ -49,7 +60,7 @@ export default function DigitalProduct() {
                   "📅 Plan de Alimentación 30 Días - 4 semanas de menús completos con listas de compras",
                   "🍽️ 20+ Recetas Shaklee - Desayunos, almuerzos, cenas y snacks balanceados",
                   "💪 Rutinas de Ejercicio Mixtas - Cardio, fuerza, piernas, brazos y glúteos (20-30 min)",
-                  "💊 Guía de Suplementación Shaklee - Life Shake, Trim, Burn, BioCell, Detox 7-Day, Probióticos y Multivitaminas",
+                  "💊 Guía de Suplementación Shaklee - Cómo maximizar resultados con los productos correctos",
                   "📊 Sistema de Seguimiento - Plantillas para medir progreso y mantener motivación",
                   "🥗 Guía de Meal Prep - Prepara comidas de la semana en 2 horas",
                   "🔄 Opciones de Sustitución - Alternativas para cada receta según tus preferencias",
@@ -91,10 +102,12 @@ export default function DigitalProduct() {
               <Button 
                 size="lg" 
                 className="w-full h-16 text-xl bg-gradient-to-r from-primary to-accent hover:opacity-90"
-                onClick={() => window.alert('Integración con Stripe pendiente')}
+                asChild
               >
-                <Download className="mr-2 w-6 h-6" />
-                Obtener Acceso Ahora - ${productPrice}
+                <a href="https://buy.stripe.com/5kQbJ0enT60p3mG4Pc5J602" target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2 w-6 h-6" />
+                  Obtener Acceso Ahora - ${productPrice}
+                </a>
               </Button>
 
               <p className="text-center text-sm text-muted-foreground">
@@ -148,71 +161,65 @@ export default function DigitalProduct() {
             </div>
           </Card>
 
-          {/* Sample Week Preview */}
-          <Card className="p-8 mb-12">
+          {/* Visual Content Preview */}
+          <Card className="p-8 mb-12 bg-gradient-to-br from-primary/5 to-secondary/5">
             <h2 className="text-2xl font-bold mb-6 text-center">
-              Ejemplo de Semana 1 - Plan de Alimentación
+              Lo Que Recibirás en Tu Guía Completa
             </h2>
-            <div className="grid md:grid-cols-4 gap-4">
-              {[
-                { meal: "Desayuno", example: "Smoothie Bowl Energético con Life Shake" },
-                { meal: "Almuerzo", example: "Ensalada de Pollo a la Parrilla" },
-                { meal: "Snack PM", example: "Parfait Proteico con Yogurt Griego" },
-                { meal: "Cena", example: "Salmón al Horno con Vegetales Asados" }
-              ].map((item, i) => (
-                <Card key={i} className="p-4 bg-muted/50">
-                  <p className="font-semibold mb-2">{item.meal}</p>
-                  <p className="text-sm text-muted-foreground">{item.example}</p>
-                </Card>
-              ))}
+            
+            {/* Recipe Collage */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4 text-center">20+ Recetas Balanceadas</h3>
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
+                {[
+                  recipeSmoothieBowl, recipeOmelet, recipeChickenSalad, recipeQuinoaBowl,
+                  recipeSalmonDinner, recipeTurkeyStirf, recipeYogurtParfait, recipeChickenSalad
+                ].map((img, i) => (
+                  <div key={i} className="relative overflow-hidden rounded-lg shadow-md aspect-square">
+                    <img 
+                      src={img} 
+                      alt={`Receta ${i + 1}`}
+                      className="w-full h-full object-cover hover:scale-110 transition-transform"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="text-center text-sm text-muted-foreground mt-6">
-              + Guía completa de meal prep, listas de compras y opciones de sustitución
-            </p>
-          </Card>
 
-          {/* Supplement Guide Preview */}
-          <Card className="p-8 mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              Guía de Suplementación Shaklee Incluida
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  product: "Life Shake",
-                  use: "Base proteica diaria",
-                  benefit: "24g proteína, vitaminas y minerales esenciales"
-                },
-                {
-                  product: "Trim & Burn",
-                  use: "Apoyo metabólico",
-                  benefit: "Acelera metabolismo y quema de grasa natural"
-                },
-                {
-                  product: "Detox 7-Day Cleanse",
-                  use: "Limpieza inicial",
-                  benefit: "Resetea tu sistema digestivo"
-                },
-                {
-                  product: "Probióticos + Multivitaminas",
-                  use: "Salud integral",
-                  benefit: "Inmunidad y digestión óptima"
-                },
-                {
-                  product: "BioCell Collagen",
-                  use: "Piel y articulaciones",
-                  benefit: "Mantén elasticidad y movilidad"
-                }
-              ].map((item, i) => (
-                <div key={i} className="space-y-2">
-                  <h3 className="font-bold text-primary">{item.product}</h3>
-                  <p className="text-sm"><span className="font-semibold">Uso:</span> {item.use}</p>
-                  <p className="text-sm text-muted-foreground">{item.benefit}</p>
+            {/* Exercise & Supplements Collage */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-center">Rutinas de Ejercicio</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[energyPlan, toningPlan, weightLossPlan, energyPlan].map((img, i) => (
+                    <div key={i} className="relative overflow-hidden rounded-lg shadow-md aspect-video">
+                      <img 
+                        src={img} 
+                        alt={`Ejercicio ${i + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform"
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-center">Guía de Suplementación</h3>
+                <div className="relative overflow-hidden rounded-lg shadow-md">
+                  <img 
+                    src={supplementsImg} 
+                    alt="Suplementos Shaklee"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <p className="text-sm text-muted-foreground mt-3 text-center">
+                  Aprende qué productos usar y cómo combinarlos para mejores resultados. Explora los paquetes disponibles en nuestra página.
+                </p>
+              </div>
             </div>
+
             <p className="text-center text-sm text-muted-foreground mt-6 italic">
-              * Guía detalla dosis, horarios y cómo maximizar cada suplemento
+              + Sistema de seguimiento con plantillas de progreso y listas de compras semanales
             </p>
           </Card>
 

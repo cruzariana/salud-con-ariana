@@ -263,7 +263,7 @@ export default function FreebieOffer() {
               <Button 
                 type="submit" 
                 size="lg" 
-                className="w-full h-14 text-lg"
+                className="w-full h-14 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90"
                 disabled={isSubmitting}
               >
                 <Download className="mr-2 w-5 h-5" />
@@ -309,59 +309,38 @@ export default function FreebieOffer() {
           </div>
         </div>
 
-        {/* Recipe Preview */}
+        {/* Recipe Collage Preview */}
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Vista Previa de las Recetas
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {recipes.map((recipe, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="relative h-64 overflow-hidden">
+          <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 p-8">
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              Vista Previa de las 7 Recetas Incluidas
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {[
+                { img: smoothieBowl, name: "Smoothie Bowl" },
+                { img: omelet, name: "Omelet Proteico" },
+                { img: chickenSalad, name: "Ensalada de Pollo" },
+                { img: quinoaBowl, name: "Bowl de Quinoa" },
+                { img: salmonDinner, name: "Salmón al Horno" },
+                { img: turkeyStirfry, name: "Salteado de Pavo" },
+                { img: yogurtParfait, name: "Parfait Proteico" }
+              ].map((item, i) => (
+                <div key={i} className="relative group overflow-hidden rounded-lg shadow-md">
                   <img 
-                    src={recipe.image} 
-                    alt={recipe.title}
-                    className="w-full h-full object-cover"
+                    src={item.img} 
+                    alt={item.name}
+                    className="w-full h-48 object-cover transition-transform group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                      {recipe.category}
-                    </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                    <p className="text-white font-semibold text-sm">{item.name}</p>
                   </div>
                 </div>
-                
-                <CardHeader>
-                  <CardTitle>{recipe.title}</CardTitle>
-                  <CardDescription>
-                    ⏱️ {recipe.time} • 🔥 {recipe.calories} cal • 💪 {recipe.protein} proteína
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">Ingredientes principales:</h4>
-                    <ul className="space-y-1 text-sm">
-                      {recipe.ingredients.slice(0, 3).map((ingredient, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                          <span>{ingredient}</span>
-                        </li>
-                      ))}
-                      <li className="text-muted-foreground italic">+ {recipe.ingredients.length - 3} más...</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="pt-4 border-t">
-                    <p className="text-sm text-muted-foreground">
-                      <span className="font-semibold text-foreground">💡 Tip: </span>
-                      {recipe.tips}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+              ))}
+            </div>
+            <p className="text-center text-muted-foreground">
+              Cada receta incluye: ingredientes, pasos detallados, valores nutricionales, tips de sustitución
+            </p>
+          </Card>
         </div>
 
         {/* Final CTA */}
