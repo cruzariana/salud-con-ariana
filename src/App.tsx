@@ -11,6 +11,7 @@ import Disclaimer from "./pages/Disclaimer";
 import DigitalProduct from "./pages/DigitalProduct";
 import FreeConsultation from "./pages/FreeConsultation";
 import FreebieOffer from "./pages/FreebieOffer";
+import PurchaseSuccess from "./pages/PurchaseSuccess";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/guia-completa" element={<DigitalProduct />} />
           <Route path="/consulta-gratis" element={<FreeConsultation />} />
           <Route path="/recursos-gratis" element={<FreebieOffer />} />
+          <Route path="/compra-exitosa" element={<PurchaseSuccess />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

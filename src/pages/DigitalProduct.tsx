@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle2, Download, Clock, Target } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { CheckCircle2, Download, Clock, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import FAQ from "@/components/FAQ";
 import recipeSmoothieBowl from "@/assets/recipe-smoothie-bowl.jpg";
 import recipeOmelet from "@/assets/recipe-omelet.jpg";
 import recipeChickenSalad from "@/assets/recipe-chicken-salad.jpg";
@@ -31,9 +33,14 @@ export default function DigitalProduct() {
 
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🔥 Oferta Limitada - Acceso Instantáneo
-            </span>
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
+              <Badge variant="destructive" className="text-sm px-4 py-2">
+                🔥 Solo 50 copias a $27
+              </Badge>
+              <Badge className="bg-accent text-accent-foreground text-sm px-4 py-2">
+                ⏰ Precio sube a $47 en 48 horas
+              </Badge>
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Transformación Giro180: Tu Sistema Completo de 30 Días
             </h1>
@@ -211,8 +218,11 @@ export default function DigitalProduct() {
             </p>
           </Card>
 
+          {/* FAQ Section */}
+          <FAQ />
+
           {/* Why Different */}
-          <Card className="p-8 bg-gradient-to-br from-secondary/10 to-accent/10">
+          <Card className="p-8 bg-gradient-to-br from-secondary/10 to-accent/10 mt-12">
             <h2 className="text-2xl font-bold mb-6 text-center">
               ¿Por qué elegir Transformación Giro180?
             </h2>
