@@ -4,17 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Download, Clock, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import FAQ from "@/components/FAQ";
-import recipeSmoothieBowl from "@/assets/recipe-smoothie-bowl.jpg";
-import recipeOmelet from "@/assets/recipe-omelet.jpg";
-import recipeChickenSalad from "@/assets/recipe-chicken-salad.jpg";
-import recipeQuinoaBowl from "@/assets/recipe-quinoa-bowl.jpg";
-import recipeSalmonDinner from "@/assets/recipe-salmon-dinner.jpg";
-import recipeTurkeyStirf from "@/assets/recipe-turkey-stirfry.jpg";
-import recipeYogurtParfait from "@/assets/recipe-yogurt-parfait.jpg";
-import energyPlan from "@/assets/energy-plan.jpg";
-import toningPlan from "@/assets/toning-plan.jpg";
-import weightLossPlan from "@/assets/weight-loss-plan.jpg";
-import supplementsImg from "@/assets/supplements.jpg";
 
 export default function DigitalProduct() {
   const navigate = useNavigate();
@@ -156,67 +145,6 @@ export default function DigitalProduct() {
             </div>
           </Card>
 
-          {/* Visual Content Preview */}
-          <Card className="p-8 mb-12 bg-gradient-to-br from-primary/5 to-secondary/5">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              Lo Que Recibirás en Tu Guía Completa
-            </h2>
-            
-            {/* Recipe Collage */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 text-center">20+ Recetas Balanceadas</h3>
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
-                {[
-                  recipeSmoothieBowl, recipeOmelet, recipeChickenSalad, recipeQuinoaBowl,
-                  recipeSalmonDinner, recipeTurkeyStirf, recipeYogurtParfait, recipeChickenSalad
-                ].map((img, i) => (
-                  <div key={i} className="relative overflow-hidden rounded-lg shadow-md aspect-square">
-                    <img 
-                      src={img} 
-                      alt={`Receta ${i + 1}`}
-                      className="w-full h-full object-cover hover:scale-110 transition-transform"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Exercise & Supplements Collage */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-center">Rutinas de Ejercicio</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[energyPlan, toningPlan, weightLossPlan, energyPlan].map((img, i) => (
-                    <div key={i} className="relative overflow-hidden rounded-lg shadow-md aspect-video">
-                      <img 
-                        src={img} 
-                        alt={`Ejercicio ${i + 1}`}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-center">Guía de Suplementación</h3>
-                <div className="relative overflow-hidden rounded-lg shadow-md">
-                  <img 
-                    src={supplementsImg} 
-                    alt="Guía de Suplementación"
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground mt-3 text-center">
-                  Aprende qué productos usar y cómo combinarlos para mejores resultados. Explora los paquetes disponibles en nuestra página.
-                </p>
-              </div>
-            </div>
-
-            <p className="text-center text-sm text-muted-foreground mt-6 italic">
-              + Sistema de seguimiento con plantillas de progreso y listas de compras semanales
-            </p>
-          </Card>
 
           {/* FAQ Section */}
           <FAQ />

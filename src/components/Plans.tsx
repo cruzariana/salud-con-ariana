@@ -17,7 +17,7 @@ const plans = [
       "Seguimiento semanal de progreso",
       "Acceso a comunidad exclusiva GIRO 180"
     ],
-    highlight: "Ideal para perder 20-50+ lbs"
+    highlight: "Ideal para perder peso"
   },
   {
     title: "Tonificación",

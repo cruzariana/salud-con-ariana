@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Heart, Target, Award } from "lucide-react";
 import arianaTransformation from "@/assets/ariana-transformation.png";
 import arianaTransformationAngles from "@/assets/ariana-transformation-angles.jpeg";
-import arianaProfile from "@/assets/ariana-profile.jpeg";
+import arianaProfile from "@/assets/ariana-new-photo.jpeg";
 
 export const AboutMe = () => {
   return (
