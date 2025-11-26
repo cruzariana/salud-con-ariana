@@ -22,45 +22,34 @@ export default function DigitalProduct() {
 
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="flex flex-wrap gap-2 justify-center mb-4">
+            <div className="flex justify-center mb-4">
               <Badge variant="destructive" className="text-sm px-4 py-2">
-                🔥 Solo 50 copias a $27
-              </Badge>
-              <Badge className="bg-accent text-accent-foreground text-sm px-4 py-2">
-                ⏰ Precio sube a $47 en 48 horas
+                💸 Precio especial por tiempo limitado
               </Badge>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Transformación Giro180: Tu Sistema Completo de 30 Días
+              Transformación Giro180 Starter Kit: Mini Sistema de 7 Días
             </h1>
             <p className="text-xl text-muted-foreground mb-6">
-              El mismo sistema que usan más de 500 mujeres en mi programa de coaching para perder 5-10 libras y reducir pulgadas en solo 30 días
+              El mismo método comprobado que ya usan más de 500 mujeres — ahora en versión de arranque para comenzar hoy mismo.
             </p>
             <div className="flex items-center justify-center gap-4">
               <span className="text-3xl font-bold text-primary">${productPrice}</span>
-              <span className="text-xl text-muted-foreground line-through">$179</span>
-              <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                Ahorra $152
-              </span>
             </div>
-            <p className="text-sm text-muted-foreground mt-2">
-              Precio especial del paquete de inicio • Valor real $179+
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-6">Sistema Completo Incluye:</h2>
+              <h2 className="text-2xl font-bold mb-6">Incluye:</h2>
               <ul className="space-y-4">
                 {[
-                  "📅 Plan de Alimentación 30 Días - 4 semanas de menús completos con listas de compras",
-                  "🍽️ 20+ Recetas Balanceadas - Desayunos, almuerzos, cenas y snacks nutritivos",
-                  "💪 Rutinas de Ejercicio Mixtas - Cardio, fuerza, piernas, brazos y glúteos (20-30 min)",
-                  "💊 Guía de Suplementación - Cómo maximizar resultados con los productos correctos",
-                  "📊 Sistema de Seguimiento - Plantillas para medir progreso y mantener motivación",
-                  "🥗 Guía de Meal Prep - Prepara comidas de la semana en 2 horas",
-                  "🔄 Opciones de Sustitución - Alternativas para cada receta según tus preferencias",
-                  "🎯 Resultados Comprobados - El mismo método de mi programa Giro180"
+                  "✔ Plan de Alimentación 7 Días (menús + lista de compras)",
+                  "✔ 4 Recetas balanceadas",
+                  "✔ 3 Rutinas de ejercicio (full body, glúteos, cardio)",
+                  "✔ Mini Guía de Suplementación",
+                  "✔ Mini Meal Prep (1 hora)",
+                  "✔ Plantillas de seguimiento de progreso",
+                  "✔ Roadmap para unirte al Sistema Completo de 30 Días"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
@@ -131,14 +120,14 @@ export default function DigitalProduct() {
               ))}
             </div>
             <div className="text-center pt-6 border-t">
-              <p className="text-lg font-semibold mb-2">Resultados Promedio en 30 Días:</p>
+              <p className="text-lg font-semibold mb-2">Resultados Promedio en 7 Días:</p>
               <div className="flex justify-center gap-8 text-center">
                 <div>
-                  <p className="text-3xl font-bold text-primary">5-10 lbs</p>
+                  <p className="text-3xl font-bold text-primary">2-3 lbs</p>
                   <p className="text-sm text-muted-foreground">Pérdida de peso</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-primary">2-4"</p>
+                  <p className="text-3xl font-bold text-primary">1-2"</p>
                   <p className="text-sm text-muted-foreground">Reducción de pulgadas</p>
                 </div>
               </div>
@@ -152,13 +141,13 @@ export default function DigitalProduct() {
           {/* Why Different */}
           <Card className="p-8 bg-gradient-to-br from-secondary/10 to-accent/10 mt-12">
             <h2 className="text-2xl font-bold mb-6 text-center">
-              ¿Por qué elegir Transformación Giro180?
+              ¿Por qué elegir el Starter Kit Giro180?
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
                   title: "Sistema Probado",
-                  desc: "El mismo método que uso con mis clientes de coaching privado ($179+ valor)"
+                  desc: "El mismo método que uso con mis clientes de coaching privado"
                 },
                 {
                   title: "Filosofía de Bienestar",
@@ -166,7 +155,7 @@ export default function DigitalProduct() {
                 },
                 {
                   title: "Resultados Reales",
-                  desc: "500+ mujeres han logrado sus metas de peso y pulgadas en 30 días"
+                  desc: "500+ mujeres han logrado sus metas de peso y pulgadas"
                 }
               ].map((item, i) => (
                 <div key={i} className="text-center">
