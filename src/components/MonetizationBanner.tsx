@@ -38,9 +38,9 @@ export const MonetizationBanner = () => {
                 <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
                   <ShoppingBag className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Guía Completa</h3>
+                <h3 className="text-xl font-bold mb-2">Guía Completa (Starter Kit 7 Días)</h3>
                 <p className="text-muted-foreground text-sm mb-2">
-                  Plan de 30 días + recetas + rutinas
+                  Plan de 7 días + recetas + rutinas y más...
                 </p>
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl font-bold text-primary">$27</span>

@@ -33,8 +33,13 @@ export default function DigitalProduct() {
             <p className="text-xl text-muted-foreground mb-6">
               El mismo método comprobado que ya usan más de 500 mujeres — ahora en versión de arranque para comenzar hoy mismo.
             </p>
-            <div className="flex items-center justify-center gap-4">
-              <span className="text-3xl font-bold text-primary">${productPrice}</span>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="text-4xl font-bold text-primary">${productPrice}</span>
+              <span className="text-2xl text-muted-foreground line-through">$97</span>
+            </div>
+            <div className="text-center">
+              <p className="text-muted-foreground mb-1">Valor real: <span className="line-through">$97</span></p>
+              <p className="text-2xl font-bold text-accent">🎉 Ahorra $70</p>
             </div>
           </div>
 
