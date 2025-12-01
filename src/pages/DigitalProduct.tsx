@@ -48,12 +48,13 @@ export default function DigitalProduct() {
               <h2 className="text-2xl font-bold mb-6">Incluye:</h2>
               <ul className="space-y-4">
                 {[
-                  "✔ Plan de Alimentación 7 Días (menús + lista de compras)",
-                  "✔ 4 Recetas balanceadas",
-                  "✔ 3 Rutinas de ejercicio (full body, glúteos, cardio)",
-                  "✔ Mini Guía de Suplementación",
-                  "✔ Mini Meal Prep (1 hora)",
-                  "✔ Plantillas de seguimiento de progreso",
+                  "✔ Plan de Alimentación 7 Días completos (menús balanceados + calorías controladas)",
+                  "✔ Lista de compras y sustitutos organizados",
+                  "✔ Recetas fáciles, deliciosas y nutritivas",
+                  "✔ Rutinas de 20-30 minutos (ejercicios efectivos)",
+                  "✔ Guía de Suplementación personalizada según tu meta",
+                  "✔ Meal Prep Plan (estrategias para organizar tus comidas)",
+                  "✔ Plantilla de seguimiento de progreso",
                   "✔ Roadmap para unirte al Sistema Completo de 30 Días"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
