@@ -1,12 +1,18 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
 
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
   apiVersion: "2025-08-27.basil",
 });
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const supabaseAdmin = createClient(
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -59,19 +65,19 @@ const handler = async (req: Request): Promise<Response> => {
 
       console.log("Sending Starter Kit to:", customerEmail);
 
-      // Load the PDF file
-      const pdfPath = "./public/downloads/Starter_Kit-Giro180.pdf";
-      let pdfContent: Uint8Array;
-      
-      try {
-        pdfContent = await Deno.readFile(pdfPath);
-      } catch (err) {
-        console.error("Error reading PDF file:", err);
-        return new Response("PDF file not found", { status: 500 });
+      // Download PDF from Supabase Storage
+      const { data: pdfData, error: storageError } = await supabaseAdmin.storage
+        .from("digital-products")
+        .download("Starter_Kit-Giro180.pdf");
+
+      if (storageError || !pdfData) {
+        console.error("Error downloading PDF from storage:", storageError);
+        return new Response("PDF file not found in storage", { status: 500 });
       }
 
       // Convert to base64
-      const base64Pdf = btoa(String.fromCharCode(...pdfContent));
+      const arrayBuffer = await pdfData.arrayBuffer();
+      const base64Pdf = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
 
       // Send email with PDF attachment
       try {
