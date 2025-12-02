@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Download, Clock, AlertCircle } from "lucide-react";
+import { CheckCircle2, Download, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import FAQ from "@/components/FAQ";
 
 export default function DigitalProduct() {
   const navigate = useNavigate();
   const productPrice = 27;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">

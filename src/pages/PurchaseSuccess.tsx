@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle2, Download, Mail, ArrowRight } from "lucide-react";
+import { CheckCircle2, Mail, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
@@ -10,17 +10,12 @@ export default function PurchaseSuccess() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Mostrar confirmación
+    window.scrollTo(0, 0);
     toast({
       title: "¡Compra Exitosa! 🎉",
-      description: "Revisa tu email para acceder a la Guía Completa.",
+      description: "Revisa tu email para acceder al Starter Kit.",
     });
   }, [toast]);
-
-  const handleDownload = () => {
-    // Aquí irá el enlace real de descarga
-    window.open("https://drive.google.com/YOUR_GUIDE_FILE_ID", "_blank");
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4">
@@ -35,29 +30,29 @@ export default function PurchaseSuccess() {
           </h1>
 
           <p className="text-lg text-muted-foreground mb-8">
-            Has desbloqueado el sistema completo que más de 500 mujeres usaron para transformar sus vidas en 30 días
+            Has desbloqueado el Starter Kit de 7 días que más de 500 mujeres usaron para comenzar su transformación
           </p>
 
           <div className="bg-background/60 backdrop-blur rounded-lg p-6 mb-8">
             <h2 className="text-xl font-bold mb-4 flex items-center justify-center gap-2">
               <Mail className="w-6 h-6 text-primary" />
-              Revisa tu Email
+              📥 Revisa tu Email
             </h2>
             <p className="text-muted-foreground mb-4">
-              Te enviamos un email con:
+              Te enviamos un email con tu <strong>Starter Kit adjunto en PDF</strong>:
             </p>
             <ul className="text-left space-y-2 max-w-md mx-auto">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Enlace de descarga de la Guía Completa (PDF)</span>
+                <span>Plan de Alimentación completo de 7 días</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Plan de alimentación 30 días con listas de compras</span>
+                <span>Lista de compras y recetas nutritivas</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Calendario de ejercicios y rutinas completas</span>
+                <span>Rutinas de ejercicio de 20-30 minutos</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
@@ -66,17 +61,8 @@ export default function PurchaseSuccess() {
             </ul>
           </div>
 
-          <Button
-            size="lg"
-            onClick={handleDownload}
-            className="w-full md:w-auto mb-4 bg-gradient-to-r from-primary to-accent hover:opacity-90"
-          >
-            <Download className="mr-2 w-5 h-5" />
-            Descargar Guía Ahora
-          </Button>
-
           <p className="text-sm text-muted-foreground mb-8">
-            ¿No ves el email? Revisa tu carpeta de spam o promociones
+            ¿No ves el email? Revisa tu carpeta de <strong>spam</strong> o <strong>promociones</strong>
           </p>
 
           <div className="border-t pt-8">
