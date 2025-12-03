@@ -75,9 +75,18 @@ const handler = async (req: Request): Promise<Response> => {
         return new Response("PDF file not found in storage", { status: 500 });
       }
 
-      // Convert to base64
+      // Convert to base64 using chunks to avoid stack overflow
       const arrayBuffer = await pdfData.arrayBuffer();
-      const base64Pdf = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+      const uint8Array = new Uint8Array(arrayBuffer);
+      
+      // Process in chunks to avoid "Maximum call stack size exceeded"
+      const chunkSize = 8192;
+      let binaryString = "";
+      for (let i = 0; i < uint8Array.length; i += chunkSize) {
+        const chunk = uint8Array.subarray(i, i + chunkSize);
+        binaryString += String.fromCharCode.apply(null, Array.from(chunk));
+      }
+      const base64Pdf = btoa(binaryString);
 
       // Send email with PDF attachment
       try {
