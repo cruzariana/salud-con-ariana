@@ -57,10 +57,46 @@ const handler = async (req: Request): Promise<Response> => {
       console.log("Processing completed checkout session:", session.id);
 
       const customerEmail = session.customer_email || session.customer_details?.email;
+      const customerName = session.customer_details?.name || session.metadata?.customer_name || null;
       
       if (!customerEmail) {
         console.error("No customer email found in session");
         return new Response("No customer email", { status: 400 });
+      }
+
+      // Update checkout session in database to mark as completed
+      const { data: existingSession } = await supabaseAdmin
+        .from("checkout_sessions")
+        .select("id")
+        .eq("stripe_session_id", session.id)
+        .single();
+
+      if (existingSession) {
+        // Update existing session
+        await supabaseAdmin
+          .from("checkout_sessions")
+          .update({
+            status: "completed",
+            completed_at: new Date().toISOString(),
+            customer_name: customerName,
+            amount_total: session.amount_total,
+          })
+          .eq("stripe_session_id", session.id);
+        console.log("Updated existing checkout session to completed");
+      } else {
+        // Create new session record (for direct payment link purchases)
+        await supabaseAdmin
+          .from("checkout_sessions")
+          .insert({
+            stripe_session_id: session.id,
+            customer_email: customerEmail,
+            customer_name: customerName,
+            status: "completed",
+            completed_at: new Date().toISOString(),
+            amount_total: session.amount_total,
+            currency: session.currency || "usd",
+          });
+        console.log("Created new completed checkout session record");
       }
 
       console.log("Sending Starter Kit to:", customerEmail);
@@ -118,7 +154,7 @@ const handler = async (req: Request): Promise<Response> => {
                   </div>
                   
                   <div class="content">
-                    <p style="font-size: 18px; margin-bottom: 10px;">¡Hola! 👋</p>
+                    <p style="font-size: 18px; margin-bottom: 10px;">¡Hola${customerName ? ` ${customerName}` : ''}! 👋</p>
                     
                     <p>¡Bienvenida oficialmente a la comunidad Giro180! Estoy muy emocionada de acompañarte en esta hermosa transformación.</p>
                     

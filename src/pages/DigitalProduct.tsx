@@ -1,18 +1,73 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Download, Clock } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { CheckCircle2, Download, Clock, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import FAQ from "@/components/FAQ";
 
 export default function DigitalProduct() {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const productPrice = 27;
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleCheckout = async () => {
+    if (!email) {
+      toast({
+        title: "Email requerido",
+        description: "Por favor ingresa tu email para continuar con la compra.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Email inválido",
+        description: "Por favor ingresa un email válido.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout-session", {
+        body: { email, name },
+      });
+
+      if (error) throw error;
+
+      if (data?.url) {
+        // Open Stripe checkout in new tab
+        window.open(data.url, "_blank");
+      } else {
+        throw new Error("No se recibió URL de checkout");
+      }
+    } catch (error: any) {
+      console.error("Checkout error:", error);
+      toast({
+        title: "Error al procesar",
+        description: "Hubo un problema al crear tu sesión de pago. Por favor intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
@@ -83,16 +138,41 @@ export default function DigitalProduct() {
                 </div>
               </Card>
 
-              <Button
-                size="lg" 
-                className="w-full h-16 text-xl bg-gradient-to-r from-primary to-accent hover:opacity-90"
-                asChild
-              >
-                <a href="https://buy.stripe.com/5kQbJ0enT60p3mG4Pc5J602" target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2 w-6 h-6" />
-                  Obtener Acceso Ahora - ${productPrice}
-                </a>
-              </Button>
+              <div className="space-y-4">
+                <Input
+                  type="text"
+                  placeholder="Tu nombre (opcional)"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="h-12"
+                />
+                <Input
+                  type="email"
+                  placeholder="Tu email *"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="h-12"
+                />
+                <Button
+                  size="lg" 
+                  className="w-full h-16 text-xl bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                  onClick={handleCheckout}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 w-6 h-6 animate-spin" />
+                      Procesando...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="mr-2 w-6 h-6" />
+                      Obtener Acceso Ahora - ${productPrice}
+                    </>
+                  )}
+                </Button>
+              </div>
 
               <p className="text-center text-sm text-muted-foreground">
                 🔒 Pago seguro procesado por Stripe

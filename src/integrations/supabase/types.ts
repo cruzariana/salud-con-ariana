@@ -14,6 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
+      checkout_sessions: {
+        Row: {
+          abandoned_email_1_sent: boolean | null
+          abandoned_email_1_sent_at: string | null
+          abandoned_email_2_sent: boolean | null
+          abandoned_email_2_sent_at: string | null
+          abandoned_email_3_sent: boolean | null
+          abandoned_email_3_sent_at: string | null
+          amount_total: number | null
+          completed_at: string | null
+          created_at: string
+          currency: string | null
+          customer_email: string
+          customer_name: string | null
+          id: string
+          post_purchase_day14_sent: boolean | null
+          post_purchase_day14_sent_at: string | null
+          post_purchase_day3_sent: boolean | null
+          post_purchase_day3_sent_at: string | null
+          post_purchase_day7_sent: boolean | null
+          post_purchase_day7_sent_at: string | null
+          product_name: string | null
+          status: string
+          stripe_session_id: string
+        }
+        Insert: {
+          abandoned_email_1_sent?: boolean | null
+          abandoned_email_1_sent_at?: string | null
+          abandoned_email_2_sent?: boolean | null
+          abandoned_email_2_sent_at?: string | null
+          abandoned_email_3_sent?: boolean | null
+          abandoned_email_3_sent_at?: string | null
+          amount_total?: number | null
+          completed_at?: string | null
+          created_at?: string
+          currency?: string | null
+          customer_email: string
+          customer_name?: string | null
+          id?: string
+          post_purchase_day14_sent?: boolean | null
+          post_purchase_day14_sent_at?: string | null
+          post_purchase_day3_sent?: boolean | null
+          post_purchase_day3_sent_at?: string | null
+          post_purchase_day7_sent?: boolean | null
+          post_purchase_day7_sent_at?: string | null
+          product_name?: string | null
+          status?: string
+          stripe_session_id: string
+        }
+        Update: {
+          abandoned_email_1_sent?: boolean | null
+          abandoned_email_1_sent_at?: string | null
+          abandoned_email_2_sent?: boolean | null
+          abandoned_email_2_sent_at?: string | null
+          abandoned_email_3_sent?: boolean | null
+          abandoned_email_3_sent_at?: string | null
+          amount_total?: number | null
+          completed_at?: string | null
+          created_at?: string
+          currency?: string | null
+          customer_email?: string
+          customer_name?: string | null
+          id?: string
+          post_purchase_day14_sent?: boolean | null
+          post_purchase_day14_sent_at?: string | null
+          post_purchase_day3_sent?: boolean | null
+          post_purchase_day3_sent_at?: string | null
+          post_purchase_day7_sent?: boolean | null
+          post_purchase_day7_sent_at?: string | null
+          product_name?: string | null
+          status?: string
+          stripe_session_id?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string | null
