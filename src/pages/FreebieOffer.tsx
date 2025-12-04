@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { CheckCircle2, Download, Sparkles } from "lucide-react";
+import { CheckCircle2, Mail, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -42,8 +42,8 @@ export default function FreebieOffer() {
       }
 
       toast({
-        title: "¡Listo! 🎉",
-        description: "Revisa tu email para descargar tus 7 recetas gratis.",
+        title: "¡Enviado! 🎉",
+        description: "Revisa tu email - te enviamos tus 7 recetas gratis.",
       });
       setEmail("");
     } catch (error) {
@@ -99,8 +99,8 @@ export default function FreebieOffer() {
                 className="w-full h-14 text-lg bg-gradient-to-r from-primary to-accent hover:opacity-90"
                 disabled={isSubmitting}
               >
-                <Download className="mr-2 w-5 h-5" />
-                {isSubmitting ? "Enviando..." : "Descargar Recetas Gratis"}
+                <Mail className="mr-2 w-5 h-5" />
+                {isSubmitting ? "Enviando..." : "Recibir Recetas Gratis"}
               </Button>
               <p className="text-xs text-muted-foreground">
                 Sin spam. Solo contenido de valor para tu bienestar.
