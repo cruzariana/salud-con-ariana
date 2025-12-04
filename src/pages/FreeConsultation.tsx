@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock, Video, CheckCircle2 } from "lucide-react";
+import { Calendar, Clock, Video, CheckCircle2, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+const WHATSAPP_NUMBER = "7872101758";
+const WHATSAPP_MESSAGE = "Hola Ariana! Me gustaría agendar una consulta gratuita contigo.";
 
 export default function FreeConsultation() {
   const navigate = useNavigate();
@@ -93,8 +96,9 @@ export default function FreeConsultation() {
                       {slot.available > 0 ? (
                         <Button 
                           size="sm"
-                          onClick={() => window.alert('Sistema de calendario en desarrollo')}
+                          onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, '_blank')}
                         >
+                          <MessageCircle className="w-4 h-4 mr-1" />
                           Reservar
                         </Button>
                       ) : (
@@ -133,9 +137,10 @@ export default function FreeConsultation() {
             <Button 
               size="lg"
               className="bg-gradient-to-r from-primary to-accent"
-              onClick={() => window.scrollTo({ top: 400, behavior: 'smooth' })}
+              onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, '_blank')}
             >
-              Ver Horarios Disponibles
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Contactar por WhatsApp
             </Button>
           </Card>
         </div>
