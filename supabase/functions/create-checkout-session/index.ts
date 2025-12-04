@@ -22,14 +22,28 @@ serve(async (req) => {
   }
 
   try {
-    const { email, name } = await req.json();
-
-    if (!email) {
+    const rawData = await req.json();
+    
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const email = rawData.email?.trim()?.toLowerCase();
+    
+    if (!email || typeof email !== 'string') {
       return new Response(
-        JSON.stringify({ error: "Email is required" }),
+        JSON.stringify({ error: "Email es requerido" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+    
+    if (email.length > 255 || !emailRegex.test(email)) {
+      return new Response(
+        JSON.stringify({ error: "Formato de email inválido" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+    
+    // Sanitize name
+    const name = rawData.name ? rawData.name.trim().substring(0, 100).replace(/[<>]/g, "") : null;
 
     console.log("Creating checkout session for:", email);
 

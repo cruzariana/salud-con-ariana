@@ -1,7 +1,11 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+
+const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -13,13 +17,88 @@ interface FreebieEmailRequest {
   name?: string;
 }
 
+// Validate and sanitize input
+function validateInput(data: FreebieEmailRequest): { valid: boolean; error?: string; sanitized?: FreebieEmailRequest } {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (!data.email || typeof data.email !== 'string') {
+    return { valid: false, error: "Email es requerido" };
+  }
+  
+  const email = data.email.trim().toLowerCase();
+  
+  if (email.length > 255) {
+    return { valid: false, error: "Email demasiado largo" };
+  }
+  
+  if (!emailRegex.test(email)) {
+    return { valid: false, error: "Formato de email inválido" };
+  }
+  
+  const name = data.name ? data.name.trim().substring(0, 100).replace(/[<>]/g, "") : undefined;
+  
+  return { valid: true, sanitized: { email, name } };
+}
+
+// Check rate limit - max 3 freebie requests per email per hour
+async function checkRateLimit(email: string): Promise<{ allowed: boolean; error?: string }> {
+  try {
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    
+    const { count, error } = await supabase
+      .from("leads")
+      .select("*", { count: "exact", head: true })
+      .eq("email", email)
+      .eq("source", "freebie")
+      .gte("created_at", oneHourAgo);
+    
+    if (error) {
+      console.error("Rate limit check error:", error);
+      return { allowed: true }; // Allow on error to not block legitimate users
+    }
+    
+    if (count && count >= 3) {
+      return { allowed: false, error: "Demasiadas solicitudes. Por favor intenta más tarde." };
+    }
+    
+    return { allowed: true };
+  } catch (error) {
+    console.error("Rate limit check exception:", error);
+    return { allowed: true };
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { email, name }: FreebieEmailRequest = await req.json();
+    const rawData: FreebieEmailRequest = await req.json();
+    
+    // Validate input
+    const validation = validateInput(rawData);
+    if (!validation.valid) {
+      console.log("Validation failed:", validation.error);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    
+    const { email, name } = validation.sanitized!;
+    
+    // Check rate limit
+    const rateLimit = await checkRateLimit(email);
+    if (!rateLimit.allowed) {
+      console.log("Rate limit exceeded for:", email);
+      return new Response(
+        JSON.stringify({ error: rateLimit.error }),
+        { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    
     console.log("Sending freebie email to:", email);
 
     // Fetch the PDF from public URL
