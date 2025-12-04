@@ -41,7 +41,7 @@ serve(async (req) => {
       customer_email: email,
       line_items: [
         {
-          price: "price_1RSY3zRsiVfYqvlYdTq4eqEJ", // Starter Kit price ID
+          price: "price_1SWkRwAtAkw6yKq2FsYdRL2L", // Starter Kit price ID ($27)
           quantity: 1,
         },
       ],
