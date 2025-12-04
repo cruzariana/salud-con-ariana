@@ -22,10 +22,32 @@ const handler = async (req: Request): Promise<Response> => {
     const { email, name }: FreebieEmailRequest = await req.json();
     console.log("Sending freebie email to:", email);
 
+    // Fetch the PDF from public URL
+    const pdfUrl = "https://giro180.me/downloads/Recetario.pdf";
+    let pdfAttachment = null;
+    
+    try {
+      const pdfResponse = await fetch(pdfUrl);
+      if (pdfResponse.ok) {
+        const pdfBuffer = await pdfResponse.arrayBuffer();
+        const pdfBase64 = btoa(String.fromCharCode(...new Uint8Array(pdfBuffer)));
+        pdfAttachment = {
+          filename: "Recetario-Giro180.pdf",
+          content: pdfBase64,
+        };
+        console.log("PDF attachment prepared successfully");
+      } else {
+        console.log("Could not fetch PDF, sending email without attachment");
+      }
+    } catch (pdfError) {
+      console.log("Error fetching PDF:", pdfError);
+    }
+
     const emailResponse = await resend.emails.send({
       from: "Ariana Wellness <onboarding@resend.dev>",
       to: [email],
       subject: "🎁 Tus 7 Recetas Gratis - Transformación Giro180",
+      ...(pdfAttachment && { attachments: [pdfAttachment] }),
       html: `
         <!DOCTYPE html>
         <html>
@@ -68,7 +90,7 @@ const handler = async (req: Request): Promise<Response> => {
                 </div>
                 
                 <center>
-                  <a href="https://drive.google.com/YOUR_FILE_ID" class="button">📥 Descargar Recetas PDF</a>
+                  <p style="background: #10b981; color: white; padding: 15px 40px; border-radius: 8px; font-weight: bold; margin: 20px 0; display: inline-block;">📎 Tu recetario viene adjunto a este email</p>
                 </center>
                 
                 <p><strong>Cada receta incluye:</strong></p>
