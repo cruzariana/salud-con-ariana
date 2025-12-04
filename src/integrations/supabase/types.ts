@@ -38,6 +38,12 @@ export type Database = {
           product_name: string | null
           status: string
           stripe_session_id: string
+          welcome_day1_sent: boolean | null
+          welcome_day1_sent_at: string | null
+          welcome_day2_sent: boolean | null
+          welcome_day2_sent_at: string | null
+          welcome_day3_sent: boolean | null
+          welcome_day3_sent_at: string | null
         }
         Insert: {
           abandoned_email_1_sent?: boolean | null
@@ -62,6 +68,12 @@ export type Database = {
           product_name?: string | null
           status?: string
           stripe_session_id: string
+          welcome_day1_sent?: boolean | null
+          welcome_day1_sent_at?: string | null
+          welcome_day2_sent?: boolean | null
+          welcome_day2_sent_at?: string | null
+          welcome_day3_sent?: boolean | null
+          welcome_day3_sent_at?: string | null
         }
         Update: {
           abandoned_email_1_sent?: boolean | null
@@ -86,6 +98,12 @@ export type Database = {
           product_name?: string | null
           status?: string
           stripe_session_id?: string
+          welcome_day1_sent?: boolean | null
+          welcome_day1_sent_at?: string | null
+          welcome_day2_sent?: boolean | null
+          welcome_day2_sent_at?: string | null
+          welcome_day3_sent?: boolean | null
+          welcome_day3_sent_at?: string | null
         }
         Relationships: []
       }
