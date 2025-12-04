@@ -253,6 +253,243 @@ const postPurchaseEmails = {
   },
 };
 
+// Welcome Series Emails (BONUS)
+const welcomeSeriesEmails = {
+  day1: {
+    subject: "Tu Día 1 empieza HOY: claridad, enfoque y intención ✨",
+    html: (name: string) => `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.8; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 30px; }
+            .section { background: #f8f4ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ec4899; }
+            .section h3 { color: #9333ea; margin-top: 0; }
+            .signature { margin-top: 30px; color: #6b7280; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <p>Hola hermosa${name ? ` ${name}` : ''},</p>
+            
+            <p>¡Hoy comienzas oficialmente tu transformación! Este día es muy importante porque marca el compromiso contigo misma, y quiero ayudarte a que empieces con total claridad.</p>
+            
+            <p><strong>Aquí tienes tres claves esenciales para que tu semana sea un éxito:</strong></p>
+            
+            <div class="section">
+              <h3>💜 1. Organiza tus comidas del día</h3>
+              <p>Antes de comenzar, revisa el plan del día y asegúrate de tener todo lo necesario:</p>
+              <ul>
+                <li>Proteínas listas o pre-cocinadas</li>
+                <li>Vegetales lavados o cortados</li>
+                <li>Snacks saludables a la mano</li>
+                <li>Agua disponible cerca de ti</li>
+              </ul>
+              <p><em>La organización elimina la tentación y aumenta las probabilidades de éxito.</em></p>
+            </div>
+            
+            <div class="section">
+              <h3>💜 2. Hidratación = energía + menos antojos</h3>
+              <p>Hoy proponte tomar:</p>
+              <ul>
+                <li>8–10 vasos de agua</li>
+                <li>Un vaso adicional antes de cada comida</li>
+                <li>Opcional: agua con limón o infusión sin azúcar</li>
+              </ul>
+              <p><em>La hidratación ayuda a controlar la ansiedad, mejora digestión y acelera resultados.</em></p>
+            </div>
+            
+            <div class="section">
+              <h3>💜 3. No busques perfección… busca consistencia</h3>
+              <p>Esto no se trata de hacerlo "perfecto".<br>
+              Se trata de hacerlo con intención, paso a paso.</p>
+              <p>Si tienes un tropiezo, respira y continúa.<br>
+              Si te sientes abrumada, aquí estoy para ayudarte.</p>
+            </div>
+            
+            <div class="signature">
+              <p>Estoy contigo en este proceso.<br>
+              Con cariño,<br>
+              <strong>Ariana</strong> 💛</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+  },
+  day2: {
+    subject: "Hacks que harán tu semana más fácil (y deliciosa) 😍✨",
+    html: (name: string) => `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.8; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 30px; }
+            .hack { background: #fef3c7; padding: 20px; border-radius: 8px; margin: 20px 0; }
+            .hack h3 { color: #d97706; margin-top: 0; }
+            .signature { margin-top: 30px; color: #6b7280; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <p>Hola hermosa${name ? ` ${name}` : ''},</p>
+            
+            <p>Hoy es tu Día 2 y quiero compartirte algunos <strong>hacks</strong> que uso con todas mis chicas del programa para hacer el proceso más fácil, práctico y delicioso.</p>
+            
+            <div class="hack">
+              <h3>💡 Hack 1: Sustitutos inteligentes sin perder resultados</h3>
+              <p>Si no tienes algún alimento, puedes usar:</p>
+              <ul>
+                <li>Pavo → pollo, tofu o atún</li>
+                <li>Vegetales mixtos → brócoli, espinaca o espárragos</li>
+                <li>Batata → yuca o calabaza</li>
+                <li>Huevo → claras líquidas o garbanzos</li>
+              </ul>
+              <p><em>Lo importante es mantener las porciones y la estructura, no el alimento exacto.</em></p>
+            </div>
+            
+            <div class="hack">
+              <h3>💡 Hack 2: Snacks rápidos y aprobados</h3>
+              <p>Para momentos de antojo:</p>
+              <ul>
+                <li>Pepinillos + limón + sal rosada</li>
+                <li>Manzana verde + 8 almendras</li>
+                <li>Zanahoria con hummus</li>
+                <li>Batida de proteína baja en azúcar</li>
+              </ul>
+            </div>
+            
+            <div class="hack">
+              <h3>💡 Hack 3: Para controlar antojos dulces</h3>
+              <p>Haz esto antes de ceder:</p>
+              <ul>
+                <li>Bebe agua fría</li>
+                <li>Respira profundo 3 veces</li>
+                <li>Toma un té caliente</li>
+                <li>Camina 3 minutos</li>
+              </ul>
+              <p><em>Funciona porque rompe el impulso de comer por ansiedad.</em></p>
+            </div>
+            
+            <div class="hack">
+              <h3>💡 Hack 4: Truco de 5 minutos para subir energía</h3>
+              <p>Pon una canción que te encante y muévete 5 minutos:</p>
+              <ul>
+                <li>baila</li>
+                <li>estira</li>
+                <li>camina</li>
+                <li>sube/baja escaleras</li>
+              </ul>
+              <p><em>Este pequeño hábito cambia tu energía al instante.</em></p>
+            </div>
+            
+            <div class="signature">
+              <p>Tú estás haciendo un trabajo espectacular.<br>
+              <strong>Ariana</strong> 💕</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+  },
+  day3: {
+    subject: "Cómo medir tu progreso REAL (y sentirte orgullosa) 📊✨",
+    html: (name: string) => `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.8; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 30px; }
+            .tip { background: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #22c55e; }
+            .tip h3 { color: #16a34a; margin-top: 0; }
+            .highlight { background: #fef3c7; padding: 15px; border-radius: 8px; text-align: center; margin: 20px 0; }
+            .signature { margin-top: 30px; color: #6b7280; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <p>Hola hermosa${name ? ` ${name}` : ''},</p>
+            
+            <p>¡Ya vas por el <strong>Día 3</strong> de tu transformación!</p>
+            
+            <p>Hoy quiero enseñarte la manera más saludable y efectiva de medir tu progreso.</p>
+            
+            <div class="highlight">
+              <p><strong>No todo se trata del número en la balanza.</strong><br>
+              Tu progreso real se ve y se siente en otras áreas.</p>
+            </div>
+            
+            <div class="tip">
+              <h3>💜 1. Fotos comparativas</h3>
+              <p>Tómate fotos en día 1, día 3 y día 7.<br>
+              Mismo lugar, misma hora, misma ropa.<br>
+              <em>Las fotos muestran cambios que el espejo no refleja.</em></p>
+            </div>
+            
+            <div class="tip">
+              <h3>💜 2. Medidas clave</h3>
+              <p>Mide:</p>
+              <ul>
+                <li>cintura</li>
+                <li>abdomen ("belly button")</li>
+                <li>cadera</li>
+                <li>muslo</li>
+                <li>brazo</li>
+              </ul>
+              <p><em>Las medidas muestran progreso incluso cuando el peso fluctúa.</em></p>
+            </div>
+            
+            <div class="tip">
+              <h3>💜 3. Energía</h3>
+              <p>Pregúntate:</p>
+              <ul>
+                <li>¿Me siento más ligera?</li>
+                <li>¿Tengo más claridad mental?</li>
+                <li>¿Tengo menos sueño en la tarde?</li>
+              </ul>
+            </div>
+            
+            <div class="tip">
+              <h3>💜 4. Inflamación</h3>
+              <p>Observa:</p>
+              <ul>
+                <li>abdomen</li>
+                <li>rostro</li>
+                <li>manos</li>
+                <li>piernas</li>
+              </ul>
+              <p><em>Cualquier mejora es progreso REAL.</em></p>
+            </div>
+            
+            <div class="tip">
+              <h3>💜 5. Estado emocional</h3>
+              <p>Cuando el cuerpo se organiza, la mente lo sigue.</p>
+              <p>Pregúntate:</p>
+              <ul>
+                <li>¿Estoy más enfocada?</li>
+                <li>¿Más positiva?</li>
+                <li>¿Más tranquila?</li>
+              </ul>
+            </div>
+            
+            <div class="signature">
+              <p>Tú estás creciendo desde adentro.<br>
+              Estoy contigo siempre.<br>
+              <strong>Ariana</strong> 💛</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+  },
+}
+
 async function sendEmail(to: string, subject: string, html: string) {
   try {
     const result = await resend.emails.send({
@@ -468,6 +705,106 @@ async function processPostPurchaseEmails() {
   }
 }
 
+async function processWelcomeSeriesEmails() {
+  const now = new Date();
+  console.log("Processing welcome series emails at:", now.toISOString());
+
+  // Welcome Day 1: 1 day after purchase
+  const oneDayAgo = new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000);
+  const { data: day1Sessions, error: day1Error } = await supabaseAdmin
+    .from("checkout_sessions")
+    .select("*")
+    .eq("status", "completed")
+    .eq("welcome_day1_sent", false)
+    .lt("completed_at", oneDayAgo.toISOString());
+
+  if (day1Error) {
+    console.error("Error fetching welcome day 1 sessions:", day1Error);
+  } else if (day1Sessions && day1Sessions.length > 0) {
+    console.log(`Found ${day1Sessions.length} sessions for welcome day 1 email`);
+    for (const session of day1Sessions) {
+      const result = await sendEmail(
+        session.customer_email,
+        welcomeSeriesEmails.day1.subject,
+        welcomeSeriesEmails.day1.html(session.customer_name || "")
+      );
+      if (result.success) {
+        await supabaseAdmin
+          .from("checkout_sessions")
+          .update({
+            welcome_day1_sent: true,
+            welcome_day1_sent_at: new Date().toISOString(),
+          })
+          .eq("id", session.id);
+      }
+    }
+  }
+
+  // Welcome Day 2: 2 days after purchase
+  const twoDaysAgo = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+  const { data: day2Sessions, error: day2Error } = await supabaseAdmin
+    .from("checkout_sessions")
+    .select("*")
+    .eq("status", "completed")
+    .eq("welcome_day1_sent", true)
+    .eq("welcome_day2_sent", false)
+    .lt("completed_at", twoDaysAgo.toISOString());
+
+  if (day2Error) {
+    console.error("Error fetching welcome day 2 sessions:", day2Error);
+  } else if (day2Sessions && day2Sessions.length > 0) {
+    console.log(`Found ${day2Sessions.length} sessions for welcome day 2 email`);
+    for (const session of day2Sessions) {
+      const result = await sendEmail(
+        session.customer_email,
+        welcomeSeriesEmails.day2.subject,
+        welcomeSeriesEmails.day2.html(session.customer_name || "")
+      );
+      if (result.success) {
+        await supabaseAdmin
+          .from("checkout_sessions")
+          .update({
+            welcome_day2_sent: true,
+            welcome_day2_sent_at: new Date().toISOString(),
+          })
+          .eq("id", session.id);
+      }
+    }
+  }
+
+  // Welcome Day 3: 3 days after purchase
+  const threeDaysAgo = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
+  const { data: day3Sessions, error: day3Error } = await supabaseAdmin
+    .from("checkout_sessions")
+    .select("*")
+    .eq("status", "completed")
+    .eq("welcome_day2_sent", true)
+    .eq("welcome_day3_sent", false)
+    .lt("completed_at", threeDaysAgo.toISOString());
+
+  if (day3Error) {
+    console.error("Error fetching welcome day 3 sessions:", day3Error);
+  } else if (day3Sessions && day3Sessions.length > 0) {
+    console.log(`Found ${day3Sessions.length} sessions for welcome day 3 email`);
+    for (const session of day3Sessions) {
+      const result = await sendEmail(
+        session.customer_email,
+        welcomeSeriesEmails.day3.subject,
+        welcomeSeriesEmails.day3.html(session.customer_name || "")
+      );
+      if (result.success) {
+        await supabaseAdmin
+          .from("checkout_sessions")
+          .update({
+            welcome_day3_sent: true,
+            welcome_day3_sent_at: new Date().toISOString(),
+          })
+          .eq("id", session.id);
+      }
+    }
+  }
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -479,6 +816,10 @@ serve(async (req) => {
 
     if (type === "abandoned" || type === "all") {
       await processAbandonedCartEmails();
+    }
+
+    if (type === "welcome" || type === "all") {
+      await processWelcomeSeriesEmails();
     }
 
     if (type === "post_purchase" || type === "all") {
