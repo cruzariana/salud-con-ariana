@@ -308,7 +308,7 @@ export const ContactForm = () => {
               <div className="flex justify-center">
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey="6LcJFAIsAAAAAMUc10B2JYvtogJrvKLpdZZOe6yr"
+                  sitekey="6LeKeyEsAAAAALgXZA4Aau9uPpiuznM-tuFJudxF"
                   onChange={(token) => setRecaptchaToken(token)}
                   onExpired={() => setRecaptchaToken(null)}
                 />
