@@ -78,7 +78,7 @@ export default function FreebieOffer() {
             7 Recetas Saludables para Empezar Tu Transformación
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            Recetas rápidas, deliciosas y altas en proteína siguiendo la filosofía Shaklee
+            Recetas rápidas, deliciosas y altas en proteína para tu bienestar
           </p>
 
           <Card className="p-8 max-w-md mx-auto bg-card/50 backdrop-blur">

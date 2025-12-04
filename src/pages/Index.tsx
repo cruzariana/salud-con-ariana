@@ -26,7 +26,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm opacity-80 mb-4">
-              © 2024 Ariana Cruz. Todos los derechos reservados.
+              © 2025 Ariana Cruz. Todos los derechos reservados.
             </p>
             <div className="flex justify-center gap-6 text-xs opacity-60">
               <Link to="/privacidad" className="hover:opacity-100 transition-opacity">Política de Privacidad</Link>
