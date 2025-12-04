@@ -101,14 +101,47 @@ const handler = async (req: Request): Promise<Response> => {
     
     console.log("Sending freebie email to:", email);
 
-    // PDF download link (direct link instead of attachment to avoid fetch issues)
-    const pdfDownloadUrl = "https://giro180.me/downloads/Recetario.pdf";
-    console.log("Using PDF download link:", pdfDownloadUrl);
+    // Download PDF from Supabase Storage
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const { data: pdfData, error: storageError } = await supabase.storage
+      .from("digital-products")
+      .download("Recetario");
+
+    let pdfAttachment = null;
+    
+    if (storageError || !pdfData) {
+      console.error("Error downloading PDF from storage:", storageError);
+      // Continue without attachment but log the error
+    } else {
+      try {
+        // Convert to base64 using chunks to avoid stack overflow
+        const arrayBuffer = await pdfData.arrayBuffer();
+        const uint8Array = new Uint8Array(arrayBuffer);
+        
+        // Process in chunks to avoid "Maximum call stack size exceeded"
+        const chunkSize = 8192;
+        let binaryString = "";
+        for (let i = 0; i < uint8Array.length; i += chunkSize) {
+          const chunk = uint8Array.subarray(i, i + chunkSize);
+          binaryString += String.fromCharCode.apply(null, Array.from(chunk));
+        }
+        const base64Pdf = btoa(binaryString);
+        
+        pdfAttachment = {
+          filename: "Recetario-Giro180.pdf",
+          content: base64Pdf,
+        };
+        console.log("PDF attachment prepared successfully");
+      } catch (pdfError) {
+        console.error("Error processing PDF:", pdfError);
+      }
+    }
 
     const emailResponse = await resend.emails.send({
       from: "Ariana Wellness <onboarding@resend.dev>",
       to: [email],
       subject: "🎁 Tus 7 Recetas Gratis - Transformación Giro180",
+      ...(pdfAttachment && { attachments: [pdfAttachment] }),
       html: `
         <!DOCTYPE html>
         <html>
@@ -151,7 +184,7 @@ const handler = async (req: Request): Promise<Response> => {
                 </div>
                 
                 <center>
-                  <a href="${pdfDownloadUrl}" style="display: inline-block; background: #10b981; color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0;">📥 Descargar Tu Recetario PDF</a>
+                  <p style="display: inline-block; background: #10b981; color: white; padding: 15px 40px; border-radius: 8px; font-weight: bold; margin: 20px 0;">📎 Tu recetario viene adjunto a este email</p>
                 </center>
                 
                 <p><strong>Cada receta incluye:</strong></p>
