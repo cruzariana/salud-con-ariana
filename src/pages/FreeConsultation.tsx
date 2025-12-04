@@ -96,7 +96,7 @@ export default function FreeConsultation() {
                       {slot.available > 0 ? (
                         <Button 
                           size="sm"
-                          onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`, '_blank')}
+                          onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hola Ariana! Me gustaría agendar una consulta gratuita contigo para el ${slot.date} a las ${slot.time}.`)}`, '_blank')}
                         >
                           <MessageCircle className="w-4 h-4 mr-1" />
                           Reservar
