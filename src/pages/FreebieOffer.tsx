@@ -154,10 +154,12 @@ export default function FreebieOffer() {
             </p>
             <Button 
               size="lg"
-              onClick={() => navigate('/guia-completa')}
+              asChild
               className="mb-4"
             >
-              Ver Guía Completa - $27
+              <a href="https://ariana-cruz.com/guia-completa" target="_blank" rel="noopener noreferrer">
+                Ver Guía Completa - $27
+              </a>
             </Button>
             <p className="text-xs text-muted-foreground">
               Más de 500 mujeres ya han transformado sus vidas con este método

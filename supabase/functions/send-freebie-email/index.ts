@@ -105,7 +105,7 @@ const handler = async (req: Request): Promise<Response> => {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
     const { data: pdfData, error: storageError } = await supabase.storage
       .from("digital-products")
-      .download("Recetario");
+      .download("Recetario.pdf");
 
     let pdfAttachment = null;
     
