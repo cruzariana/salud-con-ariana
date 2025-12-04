@@ -101,32 +101,14 @@ const handler = async (req: Request): Promise<Response> => {
     
     console.log("Sending freebie email to:", email);
 
-    // Fetch the PDF from public URL
-    const pdfUrl = "https://giro180.me/downloads/Recetario.pdf";
-    let pdfAttachment = null;
-    
-    try {
-      const pdfResponse = await fetch(pdfUrl);
-      if (pdfResponse.ok) {
-        const pdfBuffer = await pdfResponse.arrayBuffer();
-        const pdfBase64 = btoa(String.fromCharCode(...new Uint8Array(pdfBuffer)));
-        pdfAttachment = {
-          filename: "Recetario-Giro180.pdf",
-          content: pdfBase64,
-        };
-        console.log("PDF attachment prepared successfully");
-      } else {
-        console.log("Could not fetch PDF, sending email without attachment");
-      }
-    } catch (pdfError) {
-      console.log("Error fetching PDF:", pdfError);
-    }
+    // PDF download link (direct link instead of attachment to avoid fetch issues)
+    const pdfDownloadUrl = "https://giro180.me/downloads/Recetario.pdf";
+    console.log("Using PDF download link:", pdfDownloadUrl);
 
     const emailResponse = await resend.emails.send({
       from: "Ariana Wellness <onboarding@resend.dev>",
       to: [email],
       subject: "🎁 Tus 7 Recetas Gratis - Transformación Giro180",
-      ...(pdfAttachment && { attachments: [pdfAttachment] }),
       html: `
         <!DOCTYPE html>
         <html>
@@ -169,7 +151,7 @@ const handler = async (req: Request): Promise<Response> => {
                 </div>
                 
                 <center>
-                  <p style="background: #10b981; color: white; padding: 15px 40px; border-radius: 8px; font-weight: bold; margin: 20px 0; display: inline-block;">📎 Tu recetario viene adjunto a este email</p>
+                  <a href="${pdfDownloadUrl}" style="display: inline-block; background: #10b981; color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0;">📥 Descargar Tu Recetario PDF</a>
                 </center>
                 
                 <p><strong>Cada receta incluye:</strong></p>
