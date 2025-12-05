@@ -15,7 +15,7 @@ const corsHeaders = {
 };
 
 // Email templates
-const CHECKOUT_URL = "https://giro180.com/guia-completa";
+const CHECKOUT_URL = "https://ariana-cruz.com/guia-completa";
 const UPSELL_URL = "https://us.shaklee.com/es_US/arianacruz/storefront";
 
 const abandonedCartEmails = {
