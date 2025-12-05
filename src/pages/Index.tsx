@@ -7,11 +7,15 @@ import { Community } from "@/components/Community";
 import { ContactForm } from "@/components/ContactForm";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { MonetizationBanner } from "@/components/MonetizationBanner";
+import { StickyResourcesBanner } from "@/components/StickyResourcesBanner";
+import { ResourcesPopup } from "@/components/ResourcesPopup";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-10">
+      <StickyResourcesBanner />
+      <ResourcesPopup />
       <Hero />
       <Benefits />
       <AboutMe />
