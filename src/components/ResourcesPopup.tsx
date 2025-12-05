@@ -14,7 +14,7 @@ export const ResourcesPopup = () => {
       const timer = setTimeout(() => {
         setIsVisible(true);
         sessionStorage.setItem('resourcesPopupSeen', 'true');
-      }, 7000);
+      }, 15000);
 
       return () => clearTimeout(timer);
     }
