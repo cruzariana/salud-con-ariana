@@ -17,6 +17,12 @@ interface FreebieEmailRequest {
   name?: string;
 }
 
+// HTML entity escaping for secure email content
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+  return text.replace(/[&<>"']/g, (char) => map[char] || char);
+}
+
 // Validate and sanitize input
 function validateInput(data: FreebieEmailRequest): { valid: boolean; error?: string; sanitized?: FreebieEmailRequest } {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,7 +41,7 @@ function validateInput(data: FreebieEmailRequest): { valid: boolean; error?: str
     return { valid: false, error: "Formato de email inválido" };
   }
   
-  const name = data.name ? data.name.trim().substring(0, 100).replace(/[<>]/g, "") : undefined;
+  const name = data.name ? escapeHtml(data.name.trim().substring(0, 100)) : undefined;
   
   return { valid: true, sanitized: { email, name } };
 }

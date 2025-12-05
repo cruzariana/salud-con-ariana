@@ -46,6 +46,12 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   }
 }
 
+// HTML entity escaping for secure email content
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+  return text.replace(/[&<>"']/g, (char) => map[char] || char);
+}
+
 // Input validation and sanitization
 function validateAndSanitize(data: ContactEmailRequest): { valid: boolean; error?: string; sanitized?: ContactEmailRequest } {
   const { name, email, phone, message, recaptchaToken } = data;
@@ -81,12 +87,12 @@ function validateAndSanitize(data: ContactEmailRequest): { valid: boolean; error
     return { valid: false, error: "Teléfono inválido" };
   }
 
-  // Sanitize inputs (remove potentially harmful characters)
+  // Sanitize inputs with proper HTML entity escaping
   const sanitized: ContactEmailRequest = {
-    name: name.trim().replace(/[<>]/g, ""),
+    name: escapeHtml(name.trim()),
     email: email.trim().toLowerCase(),
-    phone: phone.trim().replace(/[<>]/g, ""),
-    message: message.trim().replace(/[<>]/g, ""),
+    phone: escapeHtml(phone.trim()),
+    message: escapeHtml(message.trim()),
     recaptchaToken: recaptchaToken.trim(),
   };
 
