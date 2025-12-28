@@ -1,5 +1,6 @@
-import { Check, Gift, Sparkles, Calendar } from "lucide-react";
+import { Check, Gift, Sparkles, Calendar, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CountdownTimer } from "./CountdownTimer";
 
 export const NewYearPromo = () => {
   const scrollToContact = () => {
@@ -60,13 +61,22 @@ export const NewYearPromo = () => {
             ))}
           </div>
 
-          {/* Limited time offer box */}
-          <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6 md:p-8 space-y-5 max-w-2xl mx-auto">
+          {/* Limited time offer box with countdown */}
+          <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6 md:p-8 space-y-6 max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-2 text-primary font-semibold">
               <Gift className="w-5 h-5" />
               <span className="uppercase tracking-wider text-sm">Oferta por tiempo limitado</span>
             </div>
-            <p className="text-foreground font-medium">Hasta el 29 de diciembre</p>
+            
+            {/* Countdown Timer */}
+            <div className="py-2">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
+                <Clock className="w-4 h-4" />
+                <span>La oferta termina en:</span>
+              </div>
+              <CountdownTimer />
+            </div>
+            
             <div className="flex flex-wrap justify-center gap-3">
               <span className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold shadow-md">
                 Envío GRATIS
