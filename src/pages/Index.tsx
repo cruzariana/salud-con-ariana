@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { NewYearPromo } from "@/components/NewYearPromo";
 import { Benefits } from "@/components/Benefits";
 import { Plans } from "@/components/Plans";
 import { AboutMe } from "@/components/AboutMe";
@@ -17,6 +18,7 @@ const Index = () => {
       <StickyResourcesBanner />
       <ResourcesPopup />
       <Hero />
+      <NewYearPromo />
       <Benefits />
       <AboutMe />
       <Testimonials />
