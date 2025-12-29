@@ -1,11 +1,34 @@
+import { useState, useEffect } from "react";
 import { Check, Gift, Sparkles, Calendar, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CountdownTimer } from "./CountdownTimer";
 
 export const NewYearPromo = () => {
+  const [isExpired, setIsExpired] = useState(false);
+
+  useEffect(() => {
+    const targetDate = new Date("2025-12-29T23:59:59").getTime();
+    
+    const checkExpiration = () => {
+      const now = new Date().getTime();
+      if (now >= targetDate) {
+        setIsExpired(true);
+      }
+    };
+
+    checkExpiration();
+    const timer = setInterval(checkExpiration, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToContact = () => {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Auto-hide section when offer expires
+  if (isExpired) {
+    return null;
+  }
 
   const benefits = [
     "Detox guiado incluido",
